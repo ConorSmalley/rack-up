@@ -1,0 +1,163 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    overflow: hidden;
+}
+
+.app-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-header {
+    flex-shrink: 0;
+    background: #13243a;
+    color: white;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-text {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.header-text h1 {
+    margin-bottom: 0.25rem;
+}
+
+.header-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    flex: 0 0 auto;
+}
+
+/* Mobile screens */
+@media (max-width: 767.98px) {
+
+    .app-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .header-buttons {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+}
+
+/* .medal-rack {
+    flex-shrink: 0;
+    padding: 1rem;
+} */
+.medal-rack {
+    flex-shrink: 0;
+    padding: 1rem;
+    overflow: hidden;
+}
+
+.medal-rack svg {
+    width: auto;
+    height: auto;
+    display: block;
+}
+
+/* .medal-rack svg {
+    width: auto;
+    height: auto;
+    display: block;
+    flex-shrink: 0;
+} */
+
+.medal-catalogue {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1.5rem;
+}
+
+.tag-container {
+    padding: 1rem;
+}
+
+.medal-catalogue .card {
+    cursor: pointer;
+}
+
+.medal-catalogue .card:hover {
+    border-color: #0073b8;
+}
+.tag-container {
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.tag-filter {
+    border: 1px solid #0073b8;
+    background: transparent;
+    color: #0073b8;
+    cursor: pointer;
+    padding: 0.4rem 0.75rem;
+    transition: all 0.2s ease;
+}
+
+.tag-filter:hover {
+    background: #0073b8;
+    color: white;
+}
+
+.tag-filter.active {
+    background: #0073b8;
+    color: white;
+}
+
+.medal-item {
+    transition: opacity 0.2s ease;
+}
+
+.medal-item.hidden {
+    display: none;
+}
+
+#rackContent .row {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0;
+    margin: 0;
+}
+
+#rackContent .col-auto {
+    padding: 0;
+    flex: 0 0 auto;
+}
+.medal-card-header {
+    min-height: 70px;
+    /* display: flex; */
+    /* align-items: center; */
+}
+
+.medal-card-header h4 {
+    margin: 0;
+    text-align: end;
+}
+
