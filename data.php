@@ -1261,16 +1261,34 @@ $medals = [
         'discontinued' => null,
 
         'description' => 'Awarded for qualifying long and efficient service in the UK Volunteer Reserve Forces.',
-        'ribbon' => [
-            'suspension' => 'bar',
-            'stripes' => [
-                ['name' => 'Dark Green', 'hex' => '#17613F', 'ratio' => 9],
-                ['name' => 'Yellow',     'hex' => '#D8B93E', 'ratio' => 1],
-                ['name' => 'Dark Blue',  'hex' => '#1B2D52', 'ratio' => 3],
-                ['name' => 'Scarlet',    'hex' => '#C81E2B', 'ratio' => 3],
-                ['name' => 'Light Blue', 'hex' => '#6BA4D9', 'ratio' => 3],
-                ['name' => 'Yellow',     'hex' => '#D8B93E', 'ratio' => 1],
-                ['name' => 'Dark Green', 'hex' => '#17613F', 'ratio' => 9],
+
+        'variants' => [
+            'standard' => [
+                'name' => 'Standard',
+                'ribbon' => [
+                    'suspension' => 'bar',
+                    'stripes' => [
+                        ['name' => 'Dark Green', 'hex' => '#17613F', 'ratio' => 9],
+                        ['name' => 'Yellow',     'hex' => '#D8B93E', 'ratio' => 1],
+                        ['name' => 'Dark Blue',  'hex' => '#1B2D52', 'ratio' => 3],
+                        ['name' => 'Scarlet',    'hex' => '#C81E2B', 'ratio' => 3],
+                        ['name' => 'Light Blue', 'hex' => '#6BA4D9', 'ratio' => 3],
+                        ['name' => 'Yellow',     'hex' => '#D8B93E', 'ratio' => 1],
+                        ['name' => 'Dark Green', 'hex' => '#17613F', 'ratio' => 9],
+                    ],
+                ],
+            ],
+            'hav' => [
+                'name' => 'Honourable Artillery Company',
+                'ribbon' => [
+                    'suspension' => 'bar',
+                    'stripes' => [
+                        ['name' => 'Yellow', 'hex' => '#FFD700', 'ratio' => 0.185],
+                        ['name' => 'Dark Blue', 'hex' => '#00247D', 'ratio' => 1],
+                        ['name' => 'Red', 'hex' => '#C8102E', 'ratio' => 1],
+                        ['name' => 'Yellow', 'hex' => '#FFD700', 'ratio' => 0.185],
+                    ],
+                ],
             ],
         ],
         'tags' => ['Long-Service'],

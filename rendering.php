@@ -745,31 +745,18 @@ function renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, 
                     . '>';
 
                 foreach ($medal['variants'] as $variantId => $variant) {
-                    // var_dump($selectedVariants[$medalId][0]['name']);
-                    // echo '<br />';
-                    // var_dump($variant['name']);
-                    // echo '<hr />';
                     // Determine whether this variant is selected.
-                    $isSelected = $variant['name'] === $selectedVariants[$medalId][0]['name'];
-                    // if(isset($medal['variants'])){
-                        // $html .= renderRibbon($variants[$medalId][0]['ribbon'], $RIBBON_WIDTH * $SCALE, $RIBBON_HEIGHT * $SCALE, $RIBBONS_ONLY, $devices[$medalId] ?? null);
-                    // } else {
-                        // $html .= renderRibbon($medal['ribbon'], $RIBBON_WIDTH * $SCALE, $RIBBON_HEIGHT * $SCALE, $RIBBONS_ONLY, $devices[$medalId] ?? null);
-                    // }
+                    $isSelected = false;
 
-                    // if (isset($selectedDevices[$medalId])) {
+                    if (isset($selectedDevices[$medalId])) {
 
-                    //     $selectedValues = (array) $selectedDevices[$medalId];
+                        $selectedValues = (array) $selectedVariants[$medalId];
 
-                    //     // Support both device IDs and the existing device arrays.
-                    //     $isSelected = in_array($deviceId, $selectedValues, true)
-                    //         || in_array($device, $selectedValues, true);
+                        // Support both device IDs and the existing device arrays.
+                        $isSelected = in_array($variantId, $selectedValues, true)
+                            || in_array($variant, $selectedValues, true);
 
-                    // } elseif ($deviceId === 'none') {
-
-                    //     $isSelected = true;
-
-                    // }
+                    }
 
                     $html .= '<option'
                         . ' value="' . e($variantId) . '"'
@@ -926,18 +913,6 @@ function renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, 
         }
 
     }
-
-    // Medal selection checkbox.
-    // $html .= '<input'
-    //     . ' type="checkbox"'
-    //     . ' class="check"'
-    //     . ' id="medal_' . e($medalId) . '"'
-    //     . ' name="selected[]"'
-    //     . ' value="' . e($medalId) . '"'
-    //     . ' data-medal-select'
-    //     . ' data-medal-id="' . e($medalId) . '"'
-    //     . ($selected ? ' checked' : '')
-    //     . '>';
 
     $html .= '</div>';
     $html .= '</div>';
