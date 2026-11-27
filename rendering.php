@@ -683,16 +683,28 @@ function renderMedalRack($medals, $devices, $variants, $RIBBON_WIDTH, $RIBBON_HE
     return renderRack($medals, $devices, $variants, $RIBBON_WIDTH, $RIBBON_HEIGHT_FULL, $SCALE, false);
 }
 
-function renderMedalText($medals){
-    return implode(', ', array_map(function ($medalId) use ($medals) {
+function renderMedalText($medals, $selectedDevices){
+
+    return implode(', ', array_map(function ($medalId) use ($medals, $selectedDevices) {
 
         $name = $medals[$medalId]['name'];
         
-        // if (isset($selectedDevices[$medalId]) && $selectedDevices[$medalId]['type'] !== 'none') {
+        if (isset($selectedDevices[$medalId])) {
+            $medalDevices = $selectedDevices[$medalId];
 
-        //     $name .= ' (' . $selectedDevices[$medalId]['name'] . ')';
-        // }
+            $devs = implode(', ', array_map(function ($deviceId) use ($medalDevices) {
+                return($medalDevices[$deviceId]['name']);
+            }, array_keys($medalDevices)));
+            
+            if(isset($selectedDevices[$medalId][0]['type']) && $selectedDevices[$medalId][0]['type'] === 'none'){
+                
+            } else {
+                // $name .= ' (' . $selectedDevices[$medalId][0]['name'] . ')';
+                $name .= ' (' . $devs . ')';
+            }
 
+            
+        }
         return e($name);
 
     }, array_keys($medals)));
