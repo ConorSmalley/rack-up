@@ -959,7 +959,6 @@ function fullElement(string $element, string $id, string $class, string $datatag
 }
 
 function renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE, $selected, $selectedDevices) {
-
     $html = '';
 
     $html .= '<div class="col medal-item" data-tags="' . e(implode(',', $medal['tags'] ?? [])) . '">';
@@ -1012,15 +1011,19 @@ function renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, 
                 ) {
                     continue;
                 }
-
+                
                 // Determine whether this device is selected.
                 $checked = false;
 
                 if (isset($selectedDevices[$medalId])) {
-
+                    
                     $selectedValues = (array) $selectedDevices[$medalId];
 
-                    $checked = in_array($deviceId, $selectedValues, true);
+                    $checked = in_array(
+                        $device['name'],
+                        array_column($selectedValues, 'name'),
+                        true
+                    );
 
                 } elseif ($deviceId === 'none') {
 
