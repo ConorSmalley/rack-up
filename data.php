@@ -19,6 +19,12 @@ $medals = [
             'stripes' => [
                 ['name' => 'Red', 'hex' => '#9E1B32', 'ratio' => 1],
             ],
+            'permanent_devices' => [
+                'ribbon' => [
+                    'type' => 'vc',
+                    'colour' => '#665D1E'
+                ]
+            ],
         ],
         'tags' => ['Gallantry', 'Highest-Awards'],
     ],
@@ -38,6 +44,12 @@ $medals = [
             'suspension' => 'bar',
             'stripes' => [
                 ['name' => 'Dark Blue', 'hex' => '#0A2240', 'ratio' => 1],
+            ],
+            'permanent_devices' => [
+                'ribbon' => [
+                    'type' => 'gc',
+                    'colour' => '#C0C0C0'
+                ]
             ],
         ],
         'tags' => ['Gallantry', 'Highest-Awards'],
@@ -1069,7 +1081,177 @@ $medals = [
         'tags' => ['WW2'],
     ],
     // 440–459	Post-war campaign medals
+    'general_service_medal_2008' => [
+        'name' => 'General Service Medal 2008',
+        'p' => 440,
+        'type' => 'campaign medal',
+        'category' => 'campaign',
+        'status' => 'current',
+        'introduced' => 2008,
+        'discontinued' => null,
+        'description' => 'Awarded to members of the UK Armed Forces for qualifying service on specified military operations from 2008 onwards. The qualifying operation is identified by a clasp.',
+        'ribbon' => [
+            'suspension' => 'bar',
+            'stripes' => [
+                ['name' => 'Green', 'hex' => '#006B3F', 'ratio' => 1],
+                ['name' => 'Purple', 'hex' => '#703080', 'ratio' => 1],
+            ],
+        ],
+        'tags' => ['Campaign', 'Operational Service', 'Military'],
+    ],
+
+    'operational_service_medal' => [
+        'name' => 'Operational Service Medal',
+        'p' => 450,
+        'type' => 'campaign medal',
+        'category' => 'campaign',
+        'status' => 'current',
+        'introduced' => 2000,
+        'discontinued' => null,
+        'description' => 'Awarded to members of the UK Armed Forces for qualifying service on specified operations. Separate issues have been created for individual operations, including Sierra Leone, Afghanistan and Iraq and Syria, with different ribbon designs.',
+        'ribbon' => [
+            'suspension' => 'bar',
+            'stripes' => [],
+        ],
+        'tags' => ['Campaign', 'Operational Service', 'Military'],
+    ],
     // 460–479	Modern operational service medals
+    'accumulated_campaign_service_medal_2011' => [
+        'name' => 'Accumulated Campaign Service Medal 2011',
+        'p' => 460,
+        'type' => 'service medal',
+        'category' => 'long service',
+        'status' => 'current',
+        'introduced' => 2011,
+        'discontinued' => null,
+        'description' => 'Awarded in recognition of accumulated operational service in qualifying theatres and operations. The 2011 version recognises 720 days of qualifying service and has a revised ribbon design.',
+        'ribbon' => [
+            'suspension' => 'bar',
+            'stripes' => [
+                ['name' => 'Green', 'hex' => '#006B3F', 'ratio' => 1],
+                ['name' => 'Gold', 'hex' => '#D4AF37', 'ratio' => 1],
+                ['name' => 'Purple', 'hex' => '#703080', 'ratio' => 8],
+                ['name' => 'Gold', 'hex' => '#D4AF37', 'ratio' => 1],
+                ['name' => 'Green', 'hex' => '#006B3F', 'ratio' => 1],
+            ],
+        ],
+        'tags' => ['Long Service', 'Operational Service', 'Military'],
+    ],
+    'wider_service_medal' => [
+        'name' => 'Wider Service Medal',
+        'p' => 470,
+        'type' => 'service medal',
+        'category' => 'operational service',
+        'status' => 'current',
+        'introduced' => 2024,
+        'discontinued' => null,
+        'description' => 'Awarded to Armed Forces personnel, Ministry of Defence civilians, contractors and other public servants for qualifying operational activity involving operational impact, non-physical risk and rigour. A further 180 days of qualifying service can earn a bar.',
+        'ribbon' => [
+            'suspension' => 'bar',
+            'stripes' => [
+                ['name' => 'Green',      'hex' => '#006847', 'ratio' => 2],
+                ['name' => 'Dark Blue',  'hex' => '#00247D', 'ratio' => 2],
+                ['name' => 'Sky Blue',   'hex' => '#6BA4B8', 'ratio' => 2],
+                ['name' => 'White',      'hex' => '#FFFFFF', 'ratio' => 2],
+                ['name' => 'Purple',     'hex' => '#5C2D91', 'ratio' => 16],
+                ['name' => 'White',      'hex' => '#FFFFFF', 'ratio' => 2],
+                ['name' => 'Sky Blue',   'hex' => '#6BA4B8', 'ratio' => 2],
+                ['name' => 'Dark Blue',  'hex' => '#00247D', 'ratio' => 2],
+                ['name' => 'Green',      'hex' => '#006847', 'ratio' => 2],
+            ],
+
+        ],
+        'tags' => ['Operational Service', 'Military', 'Civilian Service'],
+    ],
+
+    'humanitarian_medal' => [
+        'name' => 'Humanitarian Medal',
+        'p' => 480,
+        'type' => 'service medal',
+        'category' => 'humanitarian service',
+        'status' => 'current',
+        'introduced' => 2023,
+        'discontinued' => null,
+        'description' => 'Awarded to recognise qualifying humanitarian service by members of the UK Armed Forces and other eligible personnel in demanding circumstances.',
+        'ribbon' => [
+            'suspension' => 'bar',
+            'stripes' => [
+                ['name' => 'Purple',     'hex' => '#5C2D91', 'ratio' => 2],
+                ['name' => 'Dark Blue',  'hex' => '#00247D', 'ratio' => 2],
+                ['name' => 'Light Blue', 'hex' => '#6BA4B8', 'ratio' => 2],
+                ['name' => 'Red',        'hex' => '#C8102E', 'ratio' => 2],
+                ['name' => 'White',      'hex' => '#FFFFFF', 'ratio' => 16],
+                ['name' => 'Red',        'hex' => '#C8102E', 'ratio' => 2],
+                ['name' => 'Light Blue', 'hex' => '#6BA4B8', 'ratio' => 2],
+                ['name' => 'Dark Blue',  'hex' => '#00247D', 'ratio' => 2],
+                ['name' => 'Purple',     'hex' => '#5C2D91', 'ratio' => 2],
+            ],
+
+        ],
+        'devices' => [
+            'multiple' => true,
+            'label' => 'Ribbon clasp / device',
+            'options' => [
+                'morocco' => [
+                    'name' => 'Morocco',
+                    'ribbon' => [
+                        'type' => 'none'
+                    ],
+                    'medal' => [
+                        'type' => 'medal-bar',
+                        'text' => 'Morocco',
+                    ]
+                ],
+                'libya' => [
+                    'name' => 'Libya',
+                    'ribbon' => [
+                        'type' => 'none'
+                    ],
+                    'medal' => [
+                        'type' => 'medal-bar',
+                        'text' => 'Libya',
+                    ]
+                ],
+                'gaze' => [
+                    'name' => 'Gaza',
+                    'ribbon' => [
+                        'type' => 'none'
+                    ],
+                    'medal' => [
+                        'type' => 'medal-bar',
+                        'text' => 'Gaza',
+                    ]
+                ]
+            ],
+        ],
+        'tags' => ['Humanitarian', 'Operational Service', 'Military'],
+    ],
+    'nuclear_test_medal' => [
+        'name' => 'Nuclear Test Medal',
+        'p' => 490,
+        'type' => 'commemorative service medal',
+        'category' => 'nuclear test service',
+        'status' => 'current',
+        'introduced' => 2023,
+        'discontinued' => null,
+        'description' => 'Awarded in recognition of the service of UK personnel and civilians who participated in the British nuclear weapons testing programme between 1952 and 1967.',
+        'ribbon' => [
+            'suspension' => 'bar',
+            'stripes' => [
+                ['name' => 'Sky Blue',   'hex' => '#6BA4B8', 'ratio' => 3],
+                ['name' => 'Red',        'hex' => '#C8102E', 'ratio' => 2],
+                ['name' => 'Black',      'hex' => '#000000', 'ratio' => 2],
+                ['name' => 'Yellow',     'hex' => '#FFD100', 'ratio' => 2],
+                ['name' => 'White',      'hex' => '#FFFFFF', 'ratio' => 14],
+                ['name' => 'Yellow',     'hex' => '#FFD100', 'ratio' => 2],
+                ['name' => 'Black',      'hex' => '#000000', 'ratio' => 2],
+                ['name' => 'Red',        'hex' => '#C8102E', 'ratio' => 2],
+                ['name' => 'Sky Blue',   'hex' => '#6BA4B8', 'ratio' => 3],
+            ],
+
+        ],
+        'tags' => ['Nuclear Testing', 'Commemorative', 'Military', 'Civilian Service'],
+    ],
     // 480–499	Other campaign and operational service
     // 500–599	Coronation and Jubilee medals
     'queen_elizabeth_ii_coronation_1953' => [
@@ -1449,6 +1631,27 @@ $medals = [
             ],
         ],
     ],
+    'meritorious_service_medal' => [
+        'name' => 'Meritorious Service Medal',
+        'p' => 630,
+        'type' => 'long service medal',
+        'category' => 'long service',
+        'status' => 'current',
+        'introduced' => 1845,
+        'discontinued' => null,
+        'description' => 'Awarded for meritorious service by eligible members of the UK Armed Forces. Since 1977, the medal has been available across the three services.',
+        'ribbon' => [
+            'suspension' => 'bar',
+            'stripes' => [
+                ['name' => 'White', 'hex' => '#FFFFFF', 'ratio' => 1],
+                ['name' => 'Crimson', 'hex' => '#9B1B30', 'ratio' => 3],
+                ['name' => 'White', 'hex' => '#FFFFFF', 'ratio' => 1],
+                ['name' => 'Crimson', 'hex' => '#9B1B30', 'ratio' => 3],
+                ['name' => 'White', 'hex' => '#FFFFFF', 'ratio' => 1],
+            ],
+        ],
+        'tags' => ['Long Service', 'Meritorious Service', 'Military'],
+    ],
     'kings_volunteer_reserves_medal' => [
         'name' => 'King\'s Volunteer Reserves Medal',
         'p' => 640,
@@ -1469,6 +1672,67 @@ $medals = [
             ],
         ],
         'tags' => ['Military', 'Reserve Forces', 'Meritorious Service'],
+    ],
+    'army_long_service_good_conduct_medal' => [
+        'name' => 'Army Long Service and Good Conduct Medal',
+        'p' => 650,
+        'type' => 'long service medal',
+        'category' => 'long service',
+        'status' => 'current',
+        'introduced' => 1830,
+        'discontinued' => null,
+        'description' => 'Awarded to eligible members of the Regular Army in recognition of qualifying long service and good conduct.',
+        'ribbon' => [
+            'suspension' => 'bar',
+            'stripes' => [
+                ['name' => 'White',      'hex' => '#FFFFFF', 'ratio' => 3],
+                ['name' => 'Crimson',    'hex' => '#9E1B32', 'ratio' => 26],
+                ['name' => 'White',      'hex' => '#FFFFFF', 'ratio' => 3],
+            ],
+
+        ],
+        'tags' => ['Long Service', 'Good Conduct', 'British Army'],
+    ],
+    'royal_navy_long_service_good_conduct_medal' => [
+        'name' => 'Royal Navy Long Service and Good Conduct Medal',
+        'p' => 660,
+        'type' => 'long service medal',
+        'category' => 'long service',
+        'status' => 'current',
+        'introduced' => 1831,
+        'discontinued' => null,
+        'description' => 'Awarded to eligible members of the Royal Navy in recognition of qualifying long service and good conduct.',
+        'ribbon' => [
+            'suspension' => 'bar',
+            'stripes' => [
+                ['name' => 'White',      'hex' => '#FFFFFF', 'ratio' => 4],
+                ['name' => 'Navy Blue',  'hex' => '#00247D', 'ratio' => 24],
+                ['name' => 'White',      'hex' => '#FFFFFF', 'ratio' => 4],
+            ],
+
+        ],
+        'tags' => ['Long Service', 'Good Conduct', 'Royal Navy'],
+    ],
+    'raf_long_service_good_conduct_medal' => [
+        'name' => 'Royal Air Force Long Service and Good Conduct Medal',
+        'p' => 670,
+        'type' => 'long service medal',
+        'category' => 'long service',
+        'status' => 'current',
+        'introduced' => 1919,
+        'discontinued' => null,
+        'description' => 'Awarded to eligible members of the Royal Air Force in recognition of qualifying long service and good conduct.',
+        'ribbon' => [
+            'suspension' => 'bar',
+            'stripes' => [
+                ['name' => 'White',      'hex' => '#FFFFFF', 'ratio' => 3],
+                ['name' => 'Dark Blue',  'hex' => '#00247D', 'ratio' => 13],
+                ['name' => 'Crimson',    'hex' => '#C8102E', 'ratio' => 13],
+                ['name' => 'White',      'hex' => '#FFFFFF', 'ratio' => 3],
+            ],
+
+        ],
+        'tags' => ['Long Service', 'Good Conduct', 'Royal Air Force'],
     ],
     // 700–799	Organisational and voluntary service awards
     'St_John_efficient_service' => [
@@ -1696,6 +1960,30 @@ $medals = [
                 ],
             ],
         ],
+    ],
+    'kings_medal_champion_shots' => [
+        'name' => 'King’s Medal for Champion Shots',
+        'p' => 720,
+        'type' => 'marksmanship medal',
+        'category' => 'marksmanship',
+        'status' => 'current',
+        'introduced' => 1903,
+        'discontinued' => null,
+        'description' => 'Awarded to the champion shot in the relevant annual service marksmanship competition. Separate awards exist for the Royal Navy, Army and Royal Air Force.',
+        'ribbon' => [
+            'suspension' => 'ring',
+            'stripes' => [
+                ['name' => 'Black',      'hex' => '#000000', 'ratio' => 3],
+                ['name' => 'White',      'hex' => '#FFFFFF', 'ratio' => 3],
+                ['name' => 'Black',      'hex' => '#000000', 'ratio' => 3],
+                ['name' => 'Crimson',    'hex' => '#9E1B32', 'ratio' => 14],
+                ['name' => 'Black',      'hex' => '#000000', 'ratio' => 3],
+                ['name' => 'White',      'hex' => '#FFFFFF', 'ratio' => 3],
+                ['name' => 'Black',      'hex' => '#000000', 'ratio' => 3],
+            ],
+
+        ],
+        'tags' => ['Marksmanship', 'Royal Navy', 'British Army', 'Royal Air Force'],
     ],
 ];
 

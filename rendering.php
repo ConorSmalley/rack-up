@@ -295,6 +295,50 @@ function renderRibbon(array $ribbon, int $width = 160, int $height = 50, $RIBBON
                 $scale,
                 e($colour)
             );
+        } else if ($type === 'vc') {
+
+            $size = min($height * 0.7, $width * 0.2);
+            $scale = $size / 20;
+
+            $deviceSvg .= sprintf(
+                '<path d="
+                    M 2 2 
+                    L 4 10 L -4 10 L -2 2  
+                    L -10 4 L -10 -4 L -2 -2 
+                    L -4 -10 L 4 -10 L 2 -2 
+                    L 10 -4 L 10 4 L 2 2 
+                    Z
+                "
+                transform="translate(%.2f %.2f) scale(%.4f)"
+                fill="%s"
+                />',
+                $width / 2,
+                $height / 2,
+                $scale,
+                e($colour)
+            );
+        } else if ($type === 'gc') {
+
+            $size = min($height * 0.7, $width * 0.2);
+            $scale = $size / 20;
+
+            $deviceSvg .= sprintf(
+                '<path d="
+                    M 2 3
+                    L 2 10 L -2 10 L -2 3 L -3 2  
+                    L -10 2 L -10 -2 L -3 -2 L -2 -3   
+                    L -2 -10 L 2 -10 L 2 -3 L 3 -2  
+                    L 10 -2 L 10 2 L 3 2 L 2 3   
+                    Z
+                "
+                transform="translate(%.2f %.2f) scale(%.4f)"
+                fill="%s"
+                />',
+                $width / 2,
+                $height / 2,
+                $scale,
+                e($colour)
+            );
         }
     }
 
