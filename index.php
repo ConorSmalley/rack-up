@@ -15,9 +15,9 @@ $selectedMedals = [];
 $selectedDevices = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // error_log(print_r('----- raw from $_POST -----', true));
-    // error_log(print_r($_POST, true));
-    // error_log(print_r($selectedMedals, true));
+
+    error_log(print_r($_POST['devices'] , true));
+    error_log(print_r($_POST['selected'] , true));
 
     $submitted = $_POST['selected'] ?? [];
 
@@ -33,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         fn($id) => is_string($id) && isset($medals[$id])
     )));
 
-    // error_log(print_r($selectedMedals, true));
 
     $selected = $selectedMedals;
 
@@ -47,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $submittedDevices = $_POST['devices'] ?? [];
 
+    
     if (is_array($submittedDevices)) {
 
         foreach ($selected as $medalId) {
@@ -82,8 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
-
-    // var_dump($selectedDevices);
 }
 ?>
 
