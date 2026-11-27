@@ -1,10 +1,19 @@
 <?php
 $medals = [
-    // 000 - 099 VC & GC
+    // 000–099	Victoria Cross and George Cross
+    
     'vc' => [
         'name' => 'Victoria Cross',
-        'p' => 01,
-        'description' => 'Awarded for most conspicuous bravery, or some daring or pre-eminent act of valour or self-sacrifice, or extreme devotion to duty in the presence of the enemy.',
+        'p' => 010,
+
+        'type' => 'decoration',
+        'category' => 'gallantry',
+        'status' => 'current',
+
+        'introduced' => 1856,
+        'discontinued' => null,
+
+        'description' => 'Awarded for most conspicuous bravery, or an act of valour or self-sacrifice in the presence of the enemy.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Red', 'hex' => '#9E1B32', 'ratio' => 1],
@@ -14,8 +23,16 @@ $medals = [
     ],
     'gc' => [
         'name' => 'George Cross',
-        'p' => 02,
-        'description' => 'Awarded for acts of the greatest heroism or of the most conspicuous courage in circumstances of extreme danger.',
+        'p' => 020,
+
+        'type' => 'decoration',
+        'category' => 'gallantry',
+        'status' => 'current',
+
+        'introduced' => 1940,
+        'discontinued' => null,
+
+        'description' => 'Awarded for acts of the greatest heroism or most conspicuous courage in circumstances of extreme danger, not necessarily in the presence of the enemy.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Dark Blue', 'hex' => '#0A2240', 'ratio' => 1],
@@ -23,12 +40,19 @@ $medals = [
         ],
         'tags' => ['Gallantry', 'Highest-Awards'],
     ],
-    // 100 - 199 Orders of Knighthood
-    // 200 - 299 Decorations
+    // 100–199	Orders of chivalry
     'Order_St_John' => [
         'name' => 'Order of St John',
-        'p' => 200,
-        'description' => 'Awarded for qualifying efficient and long service in the Order of St John and its subsidiary institutions.',
+        'p' => 100,
+
+        'type' => 'order insignia',
+        'category' => 'order of chivalry',
+        'status' => 'current',
+
+        'introduced' => 1888,
+        'discontinued' => null,
+
+        'description' => 'Recognition of membership and rank within the Most Venerable Order of the Hospital of St John of Jerusalem.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Black', 'hex' => '#000000', 'ratio' => 1],
@@ -43,13 +67,186 @@ $medals = [
 
         'tags' => ['St-John'],
     ],
-    // 300 - 399 Gallantry and Distinguished conduct
-    // 400 - 499 Campaign Medals
-    // 400 - 409 Pre WW1
+    'distinguished_service_order' => [
+        'name' => 'Distinguished Service Order',
+        'p' => 110,
+        'type' => 'order',
+        'category' => 'distinguished service',
+        'status' => 'current',
+        'introduced' => 1886,
+        'discontinued' => null,
+        'description' => 'Awarded for distinguished service during active operations against the enemy, principally recognising exceptional command and leadership.',
+        'ribbon' => [
+            'stripes' => [
+                ['name' => 'Dark Blue', 'hex' => '#00205B', 'ratio' => 2],
+                ['name' => 'Crimson', 'hex' => '#A51C30', 'ratio' => 8],
+                ['name' => 'Dark Blue', 'hex' => '#00205B', 'ratio' => 2],
+            ],
+        ],
+        'tags' => ['Military', 'Distinguished Service', 'Operational'],
+    ],
+    // 200–299	Decorations
+    'conspicuous_gallantry_cross' => [
+        'name' => 'Conspicuous Gallantry Cross',
+        'p' => 210,
+
+        'type' => 'decoration',
+        'category' => 'gallantry',
+        'status' => 'current',
+
+        'introduced' => 1993,
+        'discontinued' => null,
+
+        'description' => 'Awarded for an act or acts of conspicuous gallantry during active operations against the enemy.',
+        'ribbon' => [
+            'stripes' => [
+                ['name' => 'Dark Blue', 'hex' => '#002B7F', 'ratio' => 3],
+                ['name' => 'White',     'hex' => '#FFFFFF', 'ratio' => 10],
+                ['name' => 'Crimson',   'hex' => '#9E1B32', 'ratio' => 6],
+                ['name' => 'White',     'hex' => '#FFFFFF', 'ratio' => 10],
+                ['name' => 'Dark Blue', 'hex' => '#002B7F', 'ratio' => 3],
+            ],
+
+
+        ],
+        'tags' => ['Gallantry'],
+    ],
+    'military_cross' => [
+        'name' => 'Military Cross',
+        'p' => 220,
+
+        'type' => 'decoration',
+        'category' => 'gallantry',
+        'status' => 'current',
+
+        'introduced' => 1914,
+        'discontinued' => null,
+
+        'description' => 'Awarded for exemplary gallantry during active operations against the enemy on land.',
+        'ribbon' => [
+            'stripes' => [
+                ['name' => 'White',  'hex' => '#FFFFFF', 'ratio' => 1],
+                ['name' => 'Purple', 'hex' => '#5C246E', 'ratio' => 1],
+                ['name' => 'White',  'hex' => '#FFFFFF', 'ratio' => 1],
+            ],
+
+        ],
+        'tags' => ['Gallantry'],
+    ],
+    'distinguished_service_cross' => [
+        'name' => 'Distinguished Service Cross',
+        'p' => 230,
+        'type' => 'decoration',
+        'category' => 'gallantry',
+        'status' => 'current',
+        'introduced' => 1901,
+        'discontinued' => null,
+        'description' => 'Awarded for exemplary gallantry during active operations against the enemy at sea.',
+        'ribbon' => [
+            'stripes' => [
+                ['name' => 'White', 'hex' => '#FFFFFF', 'ratio' => 1],
+                ['name' => 'Dark Blue', 'hex' => '#00205B', 'ratio' => 10],
+                ['name' => 'White', 'hex' => '#FFFFFF', 'ratio' => 1],
+            ],
+        ],
+        'tags' => ['Gallantry', 'Royal Navy', 'Naval'],
+    ],
+    'distinguished_flying_cross' => [
+        'name' => 'Distinguished Flying Cross',
+        'p' => 240,
+        'type' => 'decoration',
+        'category' => 'gallantry',
+        'status' => 'current',
+        'introduced' => 1918,
+        'discontinued' => null,
+        'description' => 'Awarded for exemplary gallantry during active operations against the enemy while flying.',
+        'ribbon' => [
+            'stripes' => [],
+        ],
+        'tags' => ['Gallantry', 'Royal Air Force', 'Aviation'],
+    ],
+    'air_force_cross' => [
+        'name' => 'Air Force Cross',
+        'p' => 250,
+        'type' => 'decoration',
+        'category' => 'gallantry',
+        'status' => 'current',
+        'introduced' => 1918,
+        'discontinued' => null,
+        'description' => 'Awarded for exemplary gallantry while flying, not during active operations against the enemy.',
+        'ribbon' => [
+            'stripes' => [],
+        ],
+        'tags' => ['Gallantry', 'Royal Air Force', 'Aviation'],
+    ],
+    'royal_red_cross_first_class' => [
+        'name' => 'Royal Red Cross (First Class)',
+        'p' => 260,
+        'type' => 'decoration',
+        'category' => 'meritorious service',
+        'status' => 'current',
+        'introduced' => 1883,
+        'discontinued' => null,
+        'description' => 'Awarded to members of the Nursing Services for exceptional devotion and competency in the performance of nursing duties over a continuous and long period.',
+        'ribbon' => [
+            'stripes' => [],
+        ],
+        'tags' => ['Nursing', 'Medical', 'Meritorious Service'],
+    ],
+    'royal_red_cross_associate' => [
+        'name' => 'Royal Red Cross (Associate)',
+        'p' => 270,
+        'type' => 'decoration',
+        'category' => 'meritorious service',
+        'status' => 'current',
+        'introduced' => 1917,
+        'discontinued' => null,
+        'description' => 'Awarded to members of the Nursing Services for special devotion and competency in the performance of nursing duties.',
+        'ribbon' => [
+            'stripes' => [],
+        ],
+        'tags' => ['Nursing', 'Medical', 'Meritorious Service'],
+    ],
+    // 300–399	Gallantry and distinguished conduct medals
+    'military_medal' => [
+        'name' => 'Military Medal',
+        'p' => 310,
+
+        'type' => 'gallantry medal',
+        'category' => 'gallantry',
+        'status' => 'discontinued',
+
+        'introduced' => 1916,
+        'discontinued' => 1993,
+
+        'description' => 'Awarded for qualifying service in the North-West Frontier and associated operations.',
+        'ribbon' => [
+            'stripes' => [
+                ['name' => 'Dark Blue', 'hex' => '#002B7F', 'ratio' => 5],
+                ['name' => 'White',     'hex' => '#FFFFFF', 'ratio' => 2],
+                ['name' => 'Red',       'hex' => '#CE1126', 'ratio' => 2],
+                ['name' => 'White',     'hex' => '#FFFFFF', 'ratio' => 2],
+                ['name' => 'Red',       'hex' => '#CE1126', 'ratio' => 2],
+                ['name' => 'White',     'hex' => '#FFFFFF', 'ratio' => 2],
+                ['name' => 'Dark Blue', 'hex' => '#002B7F', 'ratio' => 5],
+            ],
+        ],
+        'tags' => ['Gallantry'],
+    ],
+    // 400–409	Pre-1914 campaign medals
     'india_general_service_1909' => [
         'name' => '1909 India General Service Medal',
         'p' => 400,
-        'description' => 'Awarded for qualifying service in the North-West Frontier and associated operations.',
+
+        'type' => 'campaign medal',
+        'category' => 'campaign',
+        'status' => 'discontinued',
+
+        'introduced' => 1909,
+        'discontinued' => 1935,
+
+        'description' => 'Awarded for qualifying military service during campaigns and operations in India and on its frontiers between 1908 and 1935.',
+
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Dark Blue', 'hex' => '#006A4E', 'ratio' => 1],
@@ -95,11 +292,20 @@ $medals = [
             ],
         ],
     ],
-    // 410 - 419 WW1
+    // 410–419	First World War
     '1914_15_star' => [
         'name' => '1914–15 Star',
-        'p' => 411,
-        'description' => 'Awarded for qualifying service in a theatre of war between 5 August 1914 and 31 December 1915.',
+        'p' => 410,
+
+        'type' => 'campaign medal',
+        'category' => 'campaign',
+        'status' => 'discontinued',
+
+        'introduced' => 1918,
+        'discontinued' => 1918,
+
+        'description' => 'Awarded for qualifying service in a theatre of war between 5 August 1914 and 31 December 1915, subject to the applicable eligibility rules.',
+
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Red', 'hex' => '#C8102E', 'ratio' => 1],
@@ -111,8 +317,17 @@ $medals = [
     ],
     'british_war_medal' => [
         'name' => 'British War Medal 1914–1920',
-        'p' => 412,
-        'description' => 'Awarded for qualifying First World War service.',
+        'p' => 415,
+
+        'type' => 'campaign medal',
+        'category' => 'campaign',
+        'status' => 'discontinued',
+
+        'introduced' => 1919,
+        'discontinued' => 1920,
+
+        'description' => 'Awarded for qualifying service during the First World War and certain subsequent operations, including Russia.',
+
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Blue', 'hex' => '#183B68', 'ratio' => 3],
@@ -128,11 +343,18 @@ $medals = [
     ],
     'victory_medal' => [
         'name' => 'Victory Medal 1914–1919',
-        'p' => 414,
-        'description' => 'Allied Victory Medal awarded to eligible personnel who served in a theatre of war.',
+        'p' => 418,
+
+        'type' => 'campaign medal',
+        'category' => 'campaign',
+        'status' => 'discontinued',
+
+        'introduced' => 1919,
+        'discontinued' => 1919,
+
+        'description' => 'Awarded to qualifying military and civilian personnel who served in a theatre of war during the First World War.',
         'ribbon' => [
             'stripes' => [
-                // Violet to red
                 ['name' => 'Violet', 'hex' => '#654078', 'ratio' => 1],
                 ['name' => 'Violet', 'hex' => '#5D437B', 'ratio' => 1],
                 ['name' => 'Violet-blue', 'hex' => '#51477D', 'ratio' => 1],
@@ -157,8 +379,6 @@ $medals = [
                 ['name' => 'Red-orange', 'hex' => '#C94C39', 'ratio' => 1],
                 ['name' => 'Red', 'hex' => '#B83B3B', 'ratio' => 1],
                 ['name' => 'Red', 'hex' => '#B83B3B', 'ratio' => 1],
-
-                // Red back through to violet
                 ['name' => 'Red', 'hex' => '#B83B3B', 'ratio' => 1],
                 ['name' => 'Red-orange', 'hex' => '#C94C39', 'ratio' => 1],
                 ['name' => 'Red-orange', 'hex' => '#D45D37', 'ratio' => 1],
@@ -188,10 +408,18 @@ $medals = [
         ],
         'tags' => ['WW1'],
     ],
-    // 420 - 439 WW2
+    // 420–439	Second World War
     '1939_45_star' => [
         'name' => '1939–45 Star',
         'p' => 420,
+
+        'type' => 'campaign medal',
+        'category' => 'campaign',
+        'status' => 'discontinued',
+
+        'introduced' => 1943,
+        'discontinued' => 1945,
+
         'description' => 'Awarded for qualifying operational service during the Second World War.',
         'ribbon' => [
             'stripes' => [
@@ -241,8 +469,16 @@ $medals = [
     ],
     'atlantic_star' => [
         'name' => 'Atlantic Star',
-        'p' => 421,
-        'description' => 'Awarded for qualifying service in the North African and associated operational areas.',
+        'p' => 422,
+
+        'type' => 'campaign medal',
+        'category' => 'campaign',
+        'status' => 'discontinued',
+
+        'introduced' => 1945,
+        'discontinued' => 1945,
+
+        'description' => 'Awarded for qualifying service in the Atlantic and home waters, including certain maritime and air operations.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Dark Blue', 'hex' => '#174A75', 'ratio' => 5],
@@ -293,8 +529,16 @@ $medals = [
     ],
     'arctic_star' => [
         'name' => 'Arctic Star',
-        'p' => 422,
-        'description' => 'Awarded for qualifying service in the North African and associated operational areas.',
+        'p' => 424,
+
+        'type' => 'campaign medal',
+        'category' => 'campaign',
+        'status' => 'discontinued',
+
+        'introduced' => 2012,
+        'discontinued' => 2012,
+
+        'description' => 'Awarded retrospectively for qualifying service in the Arctic region during the Second World War.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Air Force Blue', 'hex' => '#6B9BC5', 'ratio' => 7],
@@ -312,8 +556,16 @@ $medals = [
     ],
     'air_crew_europe_star' => [
         'name' => 'Air Crew Europe Star',
-        'p' => 423,
-        'description' => 'Awarded for qualifying service in the North African and associated operational areas.',
+        'p' => 426,
+
+        'type' => 'campaign medal',
+        'category' => 'campaign',
+        'status' => 'discontinued',
+
+        'introduced' => 1945,
+        'discontinued' => 1945,
+
+        'description' => 'Awarded for qualifying operational flying service over Europe from UK bases during the Second World War.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Black', 'hex' => '#171717', 'ratio' => 4],
@@ -362,8 +614,16 @@ $medals = [
     ],
     'africa_star' => [
         'name' => 'Africa Star',
-        'p' => 424,
-        'description' => 'Awarded for qualifying service in the North African and associated operational areas.',
+        'p' => 428,
+
+        'type' => 'campaign medal',
+        'category' => 'campaign',
+        'status' => 'discontinued',
+
+        'introduced' => 1943,
+        'discontinued' => 1945,
+
+        'description' => 'Awarded for qualifying operational service in North Africa and associated Mediterranean territories.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Sand', 'hex' => '#CDBB91', 'ratio' => 10],
@@ -427,8 +687,17 @@ $medals = [
     ],
     'pacific_star' => [
         'name' => 'Pacific Star',
-        'p' => 425,
-        'description' => 'Awarded for qualifying operational service in Burma and specified surrounding areas.',
+        'p' => 430,
+
+        'type' => 'campaign medal',
+        'category' => 'campaign',
+        'status' => 'discontinued',
+
+        'introduced' => 1945,
+        'discontinued' => 1945,
+
+        'description' => 'Awarded for qualifying operational service in the Pacific theatre during the Second World War.',
+
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Red', 'hex' => '#C52B36', 'ratio' => 4],
@@ -463,8 +732,16 @@ $medals = [
     ],
     'burma_star' => [
         'name' => 'Burma Star',
-        'p' => 426,
-        'description' => 'Awarded for qualifying operational service in Burma and specified surrounding areas.',
+        'p' => 4432,
+
+        'type' => 'campaign medal',
+        'category' => 'campaign',
+        'status' => 'discontinued',
+
+        'introduced' => 1945,
+        'discontinued' => 1945,
+
+        'description' => 'Awarded for qualifying operational service in the Burma campaign and specified surrounding areas.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Dark Blue', 'hex' => '#173B67', 'ratio' => 3.5],
@@ -499,8 +776,16 @@ $medals = [
     ],
     'italy_star' => [
         'name' => 'Italy Star',
-        'p' => 427,
-        'description' => 'Awarded for qualifying operational service in Sicily, Italy and specified associated areas.',
+        'p' => 434,
+
+        'type' => 'campaign medal',
+        'category' => 'campaign',
+        'status' => 'discontinued',
+
+        'introduced' => 1945,
+        'discontinued' => 1945,
+
+        'description' => 'Awarded for qualifying operational service in Italy, Sicily, Sardinia, Corsica, Greece, Yugoslavia and associated areas.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Red', 'hex' => '#C83D42', 'ratio' => 1],
@@ -514,8 +799,16 @@ $medals = [
     ],
     'france_germany_star' => [
         'name' => 'France and Germany Star',
-        'p' => 428,
-        'description' => 'Awarded for qualifying operational service in France, Belgium, Luxembourg, the Netherlands and Germany.',
+        'p' => 436,
+
+        'type' => 'campaign medal',
+        'category' => 'campaign',
+        'status' => 'discontinued',
+
+        'introduced' => 1945,
+        'discontinued' => 1945,
+
+        'description' => 'Awarded for qualifying operational service in France, Belgium, the Netherlands and Germany during the specified campaign period.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Blue', 'hex' => '#21468B', 'ratio' => 1],
@@ -554,8 +847,16 @@ $medals = [
     ],
     'defence_medal' => [
         'name' => 'Defence Medal',
-        'p' => 429,
-        'description' => 'Awarded for qualifying non-operational service during the Second World War.',
+        'p' => 438,
+
+        'type' => 'campaign medal',
+        'category' => 'campaign',
+        'status' => 'discontinued',
+
+        'introduced' => 1945,
+        'discontinued' => 1945,
+
+        'description' => 'Awarded for qualifying non-operational service during the Second World War, including specified home defence and civil defence duties.',
         'ribbon' => [
             'orientation' => 'vertical',
             'finish' => 'plain',
@@ -574,8 +875,17 @@ $medals = [
     ],
     'war_medal_1939_45' => [
         'name' => 'War Medal 1939–1945',
-        'p' => 431,
-        'description' => 'Awarded to qualifying full-time personnel of the armed forces for service during the Second World War.',
+        'p' => 439,
+
+        'type' => 'campaign medal',
+        'category' => 'campaign',
+        'status' => 'discontinued',
+
+        'introduced' => 1945,
+        'discontinued' => 1945,
+
+        'description' => 'Awarded for qualifying full-time service in the Armed Forces and certain other eligible organisations during the Second World War.',
+
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Red', 'hex' => '#C8102E', 'ratio' => 6.5],
@@ -589,11 +899,22 @@ $medals = [
         ],
         'tags' => ['WW2'],
     ],
-    // 500 - 599 Jubilee & Coronation Medals
+    // 440–459	Post-war campaign medals
+    // 460–479	Modern operational service medals
+    // 480–499	Other campaign and operational service
+    // 500–599	Coronation and Jubilee medals
     'queen_elizabeth_ii_coronation_1953' => [
         'name' => 'Queen Elizabeth II Coronation Medal',
-        'p' => 520,
-        'description' => 'Awarded to selected individuals throughout the Commonwealth to commemorate the coronation of Queen Elizabeth II on 2 June 1953.',
+        'p' => 500,
+
+        'type' => 'commemorative medal',
+        'category' => 'coronation',
+        'status' => 'event specific',
+
+        'introduced' => 1953,
+        'discontinued' => 1953,
+
+        'description' => 'Awarded to selected recipients in recognition of the Coronation of Queen Elizabeth II.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'White', 'hex' => '#F4F1E8', 'ratio' => 1],
@@ -609,8 +930,16 @@ $medals = [
     ],
     'queen_elizabeth_ii_silver_jubilee_1977' => [
         'name' => 'Queen Elizabeth II Silver Jubilee Medal',
-        'p' => 521,
-        'description' => 'Awarded to commemorate the 25th anniversary of Queen Elizabeth II accession to the throne on 6 February 1952.',
+        'p' => 510,
+
+        'type' => 'commemorative medal',
+        'category' => 'jubilee',
+        'status' => 'event specific',
+
+        'introduced' => 1977,
+        'discontinued' => 1977,
+
+        'description' => 'Awarded to recognise the Silver Jubilee of Queen Elizabeth II.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Red', 'hex' => '#C8102E', 'ratio' => 2],
@@ -626,8 +955,16 @@ $medals = [
     ],
     'queen_elizabeth_ii_golden_jubilee_2002' => [
         'name' => 'Queen Elizabeth II Golden Jubilee Medal',
-        'p' => 522,
-        'description' => 'Awarded to commemorate the 50th anniversary of Queen Elizabeth II accession to the throne on 6 February 1952.',
+        'p' => 520,
+
+        'type' => 'commemorative medal',
+        'category' => 'jubilee',
+        'status' => 'event specific',
+
+        'introduced' => 2002,
+        'discontinued' => 2002,
+
+        'description' => 'Awarded to recognise the Golden Jubilee of Queen Elizabeth II.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Red', 'hex' => '#C8102E', 'ratio' => 1],
@@ -643,8 +980,16 @@ $medals = [
     ],
     'queen_elizabeth_ii_diamond_jubilee_2012' => [
         'name' => 'Queen Elizabeth II Diamond Jubilee Medal',
-        'p' => 523,
-        'description' => 'Awarded to commemorate the 60th anniversary of Queen Elizabeth II accession to the throne on 6 February 1952.',
+        'p' => 530,
+
+        'type' => 'commemorative medal',
+        'category' => 'jubilee',
+        'status' => 'event specific',
+
+        'introduced' => 2012,
+        'discontinued' => 2012,
+
+        'description' => 'Awarded to recognise the Diamond Jubilee of Queen Elizabeth II.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Teal', 'hex' => '#008C95', 'ratio' => 2],
@@ -660,8 +1005,16 @@ $medals = [
     ],
     'queen_elizabeth_ii_platinum_jubilee_2022' => [
         'name' => 'Queen Elizabeth II Platinum Jubilee Medal',
-        'p' => 524,
-        'description' => 'Awarded to eligible serving members of the Armed Forces, emergency services and prison services, and other qualifying recipients, to commemorate the 70th anniversary of Queen Elizabeth II accession to the throne on 6 February 1952.',
+        'p' => 540,
+
+        'type' => 'commemorative medal',
+        'category' => 'jubilee',
+        'status' => 'event specific',
+
+        'introduced' => 2022,
+        'discontinued' => 2022,
+
+        'description' => 'Awarded to recognise the Platinum Jubilee of Queen Elizabeth II.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Platinum Grey', 'hex' => '#C5C7C9', 'ratio' => 1],
@@ -675,8 +1028,16 @@ $medals = [
     ],
     'king_charles_iii_coronation_2023' => [
         'name' => 'King Charles III Coronation Medal',
-        'p' => 530,
-        'description' => 'Awarded to eligible individuals to recognise their contribution to the coronation of King Charles III and Queen Camilla on 6 May 2023.',
+        'p' => 550,
+
+        'type' => 'commemorative medal',
+        'category' => 'coronation',
+        'status' => 'event specific',
+
+        'introduced' => 2023,
+        'discontinued' => 2023,
+
+        'description' => 'Awarded to recognise qualifying service and contributions associated with the Coronation of King Charles III and Queen Camilla.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Red', 'hex' => '#C8102E', 'ratio' => 1],
@@ -690,11 +1051,19 @@ $medals = [
         ],
         'tags' => ['Royal', 'Coronation'],
     ],
-    // 600 - 699 Efficiency & Long Service Medals
+    // 600–699	Efficiency and long service
     'efficiency_medal_territorial' => [
         'name' => 'Efficiency Medal (Territorial)',
         'p' => 600,
-        'description' => 'Awarded for qualifying efficient and long service in the Territorial Army.',
+
+        'type' => 'long service medal',
+        'category' => 'efficiency',
+        'status' => 'discontinued',
+
+        'introduced' => 1930,
+        'discontinued' => 1999,
+
+        'description' => 'Awarded for long and efficient service in the Territorial Army, with additional service recognised by clasps.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Yellow', 'hex' => '#D8B93E', 'ratio' => 1],
@@ -706,8 +1075,16 @@ $medals = [
     ],
     'volunteer_reserves_service_medal' => [
         'name' => 'Volunteer Reserves Service Medal',
-        'p' => 601,
-        'description' => 'Awarded for qualifying efficient and long service in the Territorial Army.',
+        'p' => 610,
+
+        'type' => 'long service medal',
+        'category' => 'reserve service',
+        'status' => 'current',
+
+        'introduced' => 1999,
+        'discontinued' => null,
+
+        'description' => 'Awarded for qualifying long and efficient service in the UK Volunteer Reserve Forces.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Dark Green', 'hex' => '#17613F', 'ratio' => 9],
@@ -788,8 +1165,16 @@ $medals = [
     ],
     'cadet_forces_medal' => [
         'name' => 'Cadet Forces Medal',
-        'p' => 601,
-        'description' => 'Awarded for qualifying efficient and long service in the Territorial Army.',
+        'p' => 620,
+
+        'type' => 'long service medal',
+        'category' => 'cadet service',
+        'status' => 'current',
+
+        'introduced' => 1950,
+        'discontinued' => null,
+
+        'description' => 'Awarded to eligible commissioned officers and adult instructors of the Cadet Forces for qualifying long and efficient service.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Yellow',     'hex' => '#D8B93E', 'ratio' => 10],
@@ -868,10 +1253,19 @@ $medals = [
             ],
         ],
     ],
+    // 700–799	Organisational and voluntary service awards
     'St_John_efficient_service' => [
         'name' => 'Service Medal of the Order of St John',
-        'p' => 611,
-        'description' => 'Awarded for qualifying efficient and long service in the The Order of St John and its subsidiary institutions.',
+        'p' => 700,
+
+        'type' => 'organisational service medal',
+        'category' => 'voluntary service',
+        'status' => 'current',
+
+        'introduced' => 1898,
+        'discontinued' => null,
+
+        'description' => 'Awarded for efficient service within the St John Ambulance organisation, with additional service recognised by bars.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Black', 'hex' => '#000000', 'ratio' => 1],
@@ -994,8 +1388,16 @@ $medals = [
     ],
     'St_John_ultra_efficient_service' => [
         'name' => 'Ultra Long Service Service Medal of the Order of St John',
-        'p' => 612,
-        'description' => 'Awarded for qualifying efficient and long service in the The Order of St John and its subsidiary institutions.',
+        'p' => 710,
+
+        'type' => 'organisational service medal',
+        'category' => 'voluntary service',
+        'status' => 'current',
+
+        'introduced' => 2020,
+        'discontinued' => null,
+
+        'description' => 'Awarded in recognition of 50 years of service to the Order of St John, with additional service recognised by bars.',
         'ribbon' => [
             'stripes' => [
                 ['name' => 'Black', 'hex' => '#000000', 'ratio' => 1],
@@ -1076,11 +1478,6 @@ $medals = [
             ],
         ],
     ],
-    // 700 - 799
-    // 800 - 899
-    // 900 - 999
-
-    
 ];
 
 $medalRules = [
