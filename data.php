@@ -607,13 +607,8 @@ $medals = [
             'multiple' => false,
             'options' => [
                 'none' => [
-                    'name' => 'No device',
-                    'ribbon' => [
-                        'type' => 'none',
-                    ],
-                    'medal' => [
-                        'type' => 'none',
-                    ]
+                    'name' => 'No Clasp',
+                    'type' => 'none',
                 ],
                 'bomber_command' => [
                     'name' => 'Bomber Command',
@@ -1005,13 +1000,8 @@ $medals = [
             'multiple' => false,
             'options' => [
                 'none' => [
-                    'name' => 'No clasp',
-                    'ribbon' => [
-                        'type' => 'none',
-                    ],
-                    'medal' => [
-                        'type' => 'none',
-                    ],
+                    'name' => 'No Clasp',
+                    'type' => 'none',
                 ],
                 'atlantic' => [
                     'name' => 'Atlantic Clasp',
@@ -1583,7 +1573,7 @@ $medals = [
             'options' => [
                 'none' => [
                     'name' => '10 Years Service',
-                    'ribbon' => [
+                    'medal' => [
                         'type' => 'none',
                     ]
                 ],
