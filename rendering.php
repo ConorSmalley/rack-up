@@ -600,7 +600,7 @@ function renderMalteseCross(float $cx, float $cy, float $size, string $colour): 
     );
 }
 
-function renderRack($medals, $devices, $RIBBON_WIDTH, $RIBBON_HEIGHT, $SCALE, $RIBBONS_ONLY = false){
+function renderRack($medals, $devices, $variants, $RIBBON_WIDTH, $RIBBON_HEIGHT, $SCALE, $RIBBONS_ONLY = false){
     $currentMedalCount = 0;
     $totalMedalCount = count($medals);
     $html = '';
@@ -611,8 +611,13 @@ function renderRack($medals, $devices, $RIBBON_WIDTH, $RIBBON_HEIGHT, $SCALE, $R
     }
 
     foreach ($medals as $medalId => $medal) {
+        
         $html .= '<div class="col-auto">';
-        $html .= renderRibbon($medal['ribbon'], $RIBBON_WIDTH * $SCALE, $RIBBON_HEIGHT * $SCALE, $RIBBONS_ONLY, $devices[$medalId] ?? null);
+        if(isset($medal['variants'])){
+            $html .= renderRibbon($variants[$medalId][0]['ribbon'], $RIBBON_WIDTH * $SCALE, $RIBBON_HEIGHT * $SCALE, $RIBBONS_ONLY, $devices[$medalId] ?? null);
+        } else {
+            $html .= renderRibbon($medal['ribbon'], $RIBBON_WIDTH * $SCALE, $RIBBON_HEIGHT * $SCALE, $RIBBONS_ONLY, $devices[$medalId] ?? null);
+        }
         $html .= '</div>';
         $currentMedalCount++;
         if($RIBBONS_ONLY && $currentMedalCount === 4 && $currentMedalCount < $totalMedalCount){
@@ -626,12 +631,12 @@ function renderRack($medals, $devices, $RIBBON_WIDTH, $RIBBON_HEIGHT, $SCALE, $R
     return $html;
 }
 
-function renderRibbonRack($medals, $devices, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE,){
-    return renderRack($medals, $devices, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE, true);
+function renderRibbonRack($medals, $devices, $variants, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE,){
+    return renderRack($medals, $devices, $variants, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE, true);
 }
 
-function renderMedalRack($medals, $devices, $RIBBON_WIDTH, $RIBBON_HEIGHT_FULL, $SCALE){
-    return renderRack($medals, $devices, $RIBBON_WIDTH, $RIBBON_HEIGHT_FULL, $SCALE, false);
+function renderMedalRack($medals, $devices, $variants, $RIBBON_WIDTH, $RIBBON_HEIGHT_FULL, $SCALE){
+    return renderRack($medals, $devices, $variants, $RIBBON_WIDTH, $RIBBON_HEIGHT_FULL, $SCALE, false);
 }
 
 function renderMedalText($medals){
@@ -661,7 +666,7 @@ function fullElement(string $element, string $id, string $class, string $datatag
     return openElement($element, $id, $class, $datatags, $for) . $content . closeElement($element);
 }
 
-function renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE, $selected, $selectedDevices) {
+function renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE, $selected, $selectedDevices, $selectedVariants) {
     $html = '';
 
     $html .= '<div class="col medal-item" data-tags="' . e(implode(',', $medal['tags'] ?? [])) . '">';
@@ -673,6 +678,17 @@ function renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, 
 
     $html .= '<div class="card-header medal-card-header">';
     $html .= '<div class="d-flex justify-content-between align-items-start">';
+    if(isset($medal['variants']) && is_array($medal['variants'])){
+        foreach($medal['variants'] as $variant){
+            $html .= renderRibbon(
+                $variant['ribbon'],
+                $RIBBON_WIDTH * $SCALE,
+                $RIBBON_HEIGHT_SHORT * $SCALE,
+                true,
+                null
+            );
+        }
+    } else {
     $html .= renderRibbon(
         $medal['ribbon'],
         $RIBBON_WIDTH * $SCALE,
@@ -680,6 +696,7 @@ function renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, 
         true,
         null
     );
+    }
     $html .= '<input'
         . ' type="checkbox"'
         . ' class="check"'
@@ -702,124 +719,189 @@ function renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, 
     $html .= '<p class="card-text"><small>' . e($medal['description']) . '</small></p>';
     $html .= '</div>';
 
-    // =====================================================
-    // MEDAL DEVICES
-    // =====================================================
-
-    if (isset($medal['devices'])) {
-
+    
+    // -------------------------------------------------
+    // List Group at Bottom
+    // -------------------------------------------------
+    if (isset($medal['devices']) || isset($medal['variants'])) {
         $html .= '<ul class="list-group list-group-flush">';
 
-        if (!empty($medal['devices']['multiple'])) {
+        // =====================================================
+        // Medal Variants
+        // =====================================================
 
-            // -------------------------------------------------
-            // MULTIPLE DEVICE CHECKBOXES
-            // -------------------------------------------------
+        if(isset($medal['variants'])){
 
-            foreach ($medal['devices']['options'] as $deviceId => $device) {
+            $html .= '<li class="list-group-item">';
+                $html .= '<div class="form-field">';
 
-                if (
-                    ($device['ribbon']['type'] ?? null) === 'none' &&
-                    ($device['medal']['type'] ?? null) === 'none'
-                ) {
-                    continue;
+                $html .= '<select'
+                    . ' class="form-select w-100"'
+                    . ' style="min-width: 0;"'
+                    . ' id="device_' . e($medalId) . '"'
+                    . ' name="variants[' . e($medalId) . ']"'
+                    . ' data-device-select'
+                    . ' data-medal-id="' . e($medalId) . '"'
+                    . '>';
+
+                foreach ($medal['variants'] as $variantId => $variant) {
+                    // var_dump($selectedVariants[$medalId][0]['name']);
+                    // echo '<br />';
+                    // var_dump($variant['name']);
+                    // echo '<hr />';
+                    // Determine whether this variant is selected.
+                    $isSelected = $variant['name'] === $selectedVariants[$medalId][0]['name'];
+                    // if(isset($medal['variants'])){
+                        // $html .= renderRibbon($variants[$medalId][0]['ribbon'], $RIBBON_WIDTH * $SCALE, $RIBBON_HEIGHT * $SCALE, $RIBBONS_ONLY, $devices[$medalId] ?? null);
+                    // } else {
+                        // $html .= renderRibbon($medal['ribbon'], $RIBBON_WIDTH * $SCALE, $RIBBON_HEIGHT * $SCALE, $RIBBONS_ONLY, $devices[$medalId] ?? null);
+                    // }
+
+                    // if (isset($selectedDevices[$medalId])) {
+
+                    //     $selectedValues = (array) $selectedDevices[$medalId];
+
+                    //     // Support both device IDs and the existing device arrays.
+                    //     $isSelected = in_array($deviceId, $selectedValues, true)
+                    //         || in_array($device, $selectedValues, true);
+
+                    // } elseif ($deviceId === 'none') {
+
+                    //     $isSelected = true;
+
+                    // }
+
+                    $html .= '<option'
+                        . ' value="' . e($variantId) . '"'
+                        . ($isSelected ? ' selected' : '')
+                        . '>'
+                        . e($variant['name'])
+                        . '</option>';
+
                 }
-                
-                // Determine whether this device is selected.
-                $checked = false;
 
-                if (isset($selectedDevices[$medalId])) {
+                $html .= '</select>';
+                $html .= '</div>';
+                $html .= '</li>';
+
+        }
+
+        // =====================================================
+        // MEDAL DEVICES
+        // =====================================================
+
+        if (isset($medal['devices'])) {
+
+            if (!empty($medal['devices']['multiple'])) {
+
+                // -------------------------------------------------
+                // MULTIPLE DEVICE CHECKBOXES
+                // -------------------------------------------------
+
+                foreach ($medal['devices']['options'] as $deviceId => $device) {
+
+                    if (
+                        ($device['ribbon']['type'] ?? null) === 'none' &&
+                        ($device['medal']['type'] ?? null) === 'none'
+                    ) {
+                        continue;
+                    }
                     
-                    $selectedValues = (array) $selectedDevices[$medalId];
+                    // Determine whether this device is selected.
+                    $checked = false;
 
-                    $checked = in_array(
-                        $device['name'],
-                        array_column($selectedValues, 'name'),
-                        true
-                    );
+                    if (isset($selectedDevices[$medalId])) {
+                        
+                        $selectedValues = (array) $selectedDevices[$medalId];
 
-                } elseif ($deviceId === 'none') {
+                        $checked = in_array(
+                            $device['name'],
+                            array_column($selectedValues, 'name'),
+                            true
+                        );
 
-                    $checked = true;
+                    } elseif ($deviceId === 'none') {
+
+                        $checked = true;
+
+                    }
+
+                    $html .= '<li class="list-group-item">';
+                    $html .= '<div class="form-field">';
+
+                    $html .= '<input type="checkbox"'
+                        . ' class="check"'
+                        . ' id="device_list_' . e($medalId) . '_' . e($deviceId) . '"'
+                        . ' name="devices[' . e($medalId) . '][]"'
+                        . ' value="' . e($deviceId) . '"'
+                        . ' data-device-select'
+                        . ' data-medal-id="' . e($medalId) . '"'
+                        . ($checked ? ' checked' : '')
+                        . '>';
+
+                    $html .= '<label for="device_list_' . e($medalId) . '_' . e($deviceId) . '">'
+                        . '<small>' . e($device['name']) . '</small>'
+                        . '</label>';
+
+                    $html .= '</div>';
+                    $html .= '</li>';
 
                 }
+
+            } else {
+
+                // -------------------------------------------------
+                // SINGLE DEVICE DROPDOWN
+                // -------------------------------------------------
 
                 $html .= '<li class="list-group-item">';
                 $html .= '<div class="form-field">';
 
-                $html .= '<input type="checkbox"'
-                    . ' class="check"'
-                    . ' id="device_list_' . e($medalId) . '_' . e($deviceId) . '"'
-                    . ' name="devices[' . e($medalId) . '][]"'
-                    . ' value="' . e($deviceId) . '"'
+                $html .= '<select'
+                    . ' class="form-select w-100"'
+                    . ' style="min-width: 0;"'
+                    . ' id="device_' . e($medalId) . '"'
+                    . ' name="devices[' . e($medalId) . ']"'
                     . ' data-device-select'
                     . ' data-medal-id="' . e($medalId) . '"'
-                    . ($checked ? ' checked' : '')
                     . '>';
 
-                $html .= '<label for="device_list_' . e($medalId) . '_' . e($deviceId) . '">'
-                    . '<small>' . e($device['name']) . '</small>'
-                    . '</label>';
+                foreach ($medal['devices']['options'] as $deviceId => $device) {
 
+                    // Determine whether this device is selected.
+                    $isSelected = false;
+
+                    if (isset($selectedDevices[$medalId])) {
+
+                        $selectedValues = (array) $selectedDevices[$medalId];
+
+                        // Support both device IDs and the existing device arrays.
+                        $isSelected = in_array($deviceId, $selectedValues, true)
+                            || in_array($device, $selectedValues, true);
+
+                    } elseif ($deviceId === 'none') {
+
+                        $isSelected = true;
+
+                    }
+
+                    $html .= '<option'
+                        . ' value="' . e($deviceId) . '"'
+                        . ($isSelected ? ' selected' : '')
+                        . '>'
+                        . e($device['name'])
+                        . '</option>';
+
+                }
+
+                $html .= '</select>';
                 $html .= '</div>';
                 $html .= '</li>';
 
             }
 
-        } else {
-
-            // -------------------------------------------------
-            // SINGLE DEVICE DROPDOWN
-            // -------------------------------------------------
-
-            $html .= '<li class="list-group-item">';
-            $html .= '<div class="form-field">';
-
-            $html .= '<select'
-                . ' class="form-select w-100"'
-                . ' style="min-width: 0;"'
-                . ' id="device_' . e($medalId) . '"'
-                . ' name="devices[' . e($medalId) . ']"'
-                . ' data-device-select'
-                . ' data-medal-id="' . e($medalId) . '"'
-                . '>';
-
-            foreach ($medal['devices']['options'] as $deviceId => $device) {
-
-                // Determine whether this device is selected.
-                $isSelected = false;
-
-                if (isset($selectedDevices[$medalId])) {
-
-                    $selectedValues = (array) $selectedDevices[$medalId];
-
-                    // Support both device IDs and the existing device arrays.
-                    $isSelected = in_array($deviceId, $selectedValues, true)
-                        || in_array($device, $selectedValues, true);
-
-                } elseif ($deviceId === 'none') {
-
-                    $isSelected = true;
-
-                }
-
-                $html .= '<option'
-                    . ' value="' . e($deviceId) . '"'
-                    . ($isSelected ? ' selected' : '')
-                    . '>'
-                    . e($device['name'])
-                    . '</option>';
-
-            }
-
-            $html .= '</select>';
-            $html .= '</div>';
-            $html .= '</li>';
-
         }
-
         $html .= '</ul>';
-
     }
 
     // =====================================================

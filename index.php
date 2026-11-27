@@ -13,11 +13,13 @@ $FULL_MEDAL_ADITIONAL_SCALE = 0.5;
 
 $selectedMedals = [];
 $selectedDevices = [];
+$selectedVariants = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    error_log(print_r($_POST['devices'] , true));
-    error_log(print_r($_POST['selected'] , true));
+    // =====================================================
+    // Selected Medals
+    // =====================================================
 
     $submitted = $_POST['selected'] ?? [];
 
@@ -42,6 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $selectedMedals[$id] = $medals[$id];
     }
 
+    // =====================================================
+    // Selected Devices
+    // =====================================================
     $selectedDevices = [];
 
     $submittedDevices = $_POST['devices'] ?? [];
@@ -81,6 +86,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 );
             }
         }
+    }
+
+    // =====================================================
+    // Selected Variants
+    // =====================================================
+    $selectedVariants = [];
+
+    $submittedVariants = $_POST['variants'] ?? [];
+
+    if (is_array($submittedVariants)) {
+        foreach($selected as $medalId){
+            if (!isset($medals[$medalId]['variants'])) {
+                continue;
+            }
+
+            $options = $medals[$medalId]['variants'];
+
+            $variantIds = $submittedVariants[$medalId] ?? ['none'];
+
+            // Normalise single selections into an array
+            if (!is_array($variantIds)) {
+                $variantIds = [$variantIds];
+            }
+
+            foreach ($variantIds as $variantId) {
+
+                if (
+                    is_string($variantId) &&
+                    isset($options[$variantId])
+                ) {
+                    $selectedVariants[$medalId][] = $options[$variantId];
+                }
+            }
+
+            // Remove duplicate entries if necessary
+            if (isset($selectedVariants[$medalId])) {
+                $selectedVariants[$medalId] = array_values(
+                    array_unique($selectedVariants[$medalId], SORT_REGULAR)
+                );
+            }
+        }   
     }
 }
 ?>
@@ -150,11 +196,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="tab-pane show active" id="ribbon-rack-pane" role="tabpanel" aria-labelledby="ribbon-rack" tabindex="0">
                             <div class="row">
                                 <div class="col-12">
-                                    <?= renderRibbonRack($selectedMedals, $selectedDevices, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE); ?>
+                                    <?= renderRibbonRack($selectedMedals, $selectedDevices, $selectedVariants, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE); ?>
                                 </div>
                                 <?php if($SHOW_ALL_MEDAL_RACK){ ?> 
                                     <div class="col-6">
-                                        <?= renderRibbonRack($medals, $selectedDevices, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE); ?>
+                                        <?= renderRibbonRack($medals, $selectedDevices, $selectedVariants, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE); ?>
                                     </div>
                                 <?php } ?>
                             </div>
@@ -162,11 +208,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="tab-pane" id="medal-rack-pane" role="tabpanel" aria-labelledby="medal-rack" tabindex="0">
                             <div class="row">
                                 <div class="col-12">
-                                    <?= renderMedalRack($selectedMedals, $selectedDevices, $RIBBON_WIDTH, $RIBBON_HEIGHT_FULL, $SCALE * $FULL_MEDAL_ADITIONAL_SCALE); ?>
+                                    <?= renderMedalRack($selectedMedals, $selectedDevices, $selectedVariants, $RIBBON_WIDTH, $RIBBON_HEIGHT_FULL, $SCALE * $FULL_MEDAL_ADITIONAL_SCALE); ?>
                                 </div>
                                 <?php if($SHOW_ALL_MEDAL_RACK){ ?> 
                                     <div class="col-6">
-                                        <?= renderMedalRack($medals, $selectedDevices, $RIBBON_WIDTH, $RIBBON_HEIGHT_FULL, $SCALE); ?>
+                                        <?= renderMedalRack($medals, $selectedDevices, $selectedVariants, $RIBBON_WIDTH, $RIBBON_HEIGHT_FULL, $SCALE); ?>
                                     </div>
                                 <?php } ?>
                             </div>
@@ -177,18 +223,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- SCROLLABLE MEDAL CATALOGUE -->
         <main class="medal-catalogue border rounded">
-
             <form id="medalForm" method="POST" action="">
 
                 <div class="row row-cols-1 xl:row-cols-6 lg:row-cols-4 md:row-cols-3 sm:row-cols-2 g-4">
 
                     <?php foreach ($medals as $medalId => $medal) { ?>
-                        <?= renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE, in_array($medal, $selectedMedals, true), $selectedDevices); ?>
+                        <?= renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE, in_array($medal, $selectedMedals, true), $selectedDevices, $selectedVariants); ?>
                     <?php } ?>
 
                 </div>
 
             </form>
+
 
         </main>
 

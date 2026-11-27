@@ -275,17 +275,46 @@ $medals = [
     'british_empire_medal' => [
         'name' => 'British Empire Medal',
         'p' => 290,
-        'type' => 'medal',
-        'category' => 'meritorious service',
+
+        'type' => 'decoration',
+        'category' => 'gallantry',
         'status' => 'current',
+
         'introduced' => 1917,
         'discontinued' => null,
-        'description' => 'Awarded for meritorious civil or military service worthy of recognition by the Crown.',
-        'ribbon' => [
-            'suspension' => 'ring',
-            'stripes' => [],
+
+        'description' => 'Awarded for meritorious civil or military service.',
+
+        'variants' => [
+            'civilian' => [
+                'name' => 'Civilian',
+                'ribbon' => [
+                    'suspension' => 'bar',
+                    'stripes' => [
+                        ['name' => 'Pearl Grey', 'hex' => '#D1D3D4', 'ratio' => 0.1],
+                        ['name' => 'Rose Pink',  'hex' => '#E8839B', 'ratio' => 1],
+                        ['name' => 'Pearl Grey', 'hex' => '#D1D3D4', 'ratio' => 0.1],
+                    ],
+                ],
+            ],
+
+            'military' => [
+                'name' => 'Military',
+                'ribbon' => [
+                    'suspension' => 'bar',
+                    'stripes' => [
+                        ['name' => 'Pearl Grey', 'hex' => '#D1D3D4', 'ratio' => 0.1],
+                        ['name' => 'Rose Pink',  'hex' => '#E8839B', 'ratio' => 0.45],
+                        ['name' => 'Pearl Grey', 'hex' => '#D1D3D4', 'ratio' => 0.1],
+                        ['name' => 'Rose Pink',  'hex' => '#E8839B', 'ratio' => 0.45],
+                        ['name' => 'Pearl Grey', 'hex' => '#D1D3D4', 'ratio' => 0.1],
+                    ],
+
+                ],
+            ],
         ],
-        'tags' => ['Civilian', 'Military', 'Meritorious Service'],
+
+        'tags' => ['British Empire', 'Service'],
     ],
     // 300–399	Gallantry and distinguished conduct medals
     'george_medal' => [
