@@ -5,19 +5,23 @@ require_once('rendering.php');
 
 $SCALE = 1;
 $RIBBON_WIDTH = 32;
-$RIBBON_HEIGHT_FULL = 70;
+$RIBBON_HEIGHT_FULL = 50;
 $RIBBON_HEIGHT_SHORT = 10;
-$SHOW_ALL_MEDAL_RACK = true;
 
-$FULL_MEDAL_ADITIONAL_SCALE = 0.5;
+$SHOW_ALL_MEDAL_RACK = true;
+$SHOW_TAGS = false;
+
+$FULL_MEDAL_ADITIONAL_SCALE = 0.3;
 
 $selectedMedals = [];
 $selectedDevices = [];
+$selectedVariants = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    error_log(print_r($_POST['devices'] , true));
-    error_log(print_r($_POST['selected'] , true));
+    // =====================================================
+    // Selected Medals
+    // =====================================================
 
     $submitted = $_POST['selected'] ?? [];
 
@@ -42,6 +46,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $selectedMedals[$id] = $medals[$id];
     }
 
+    // =====================================================
+    // Selected Devices
+    // =====================================================
     $selectedDevices = [];
 
     $submittedDevices = $_POST['devices'] ?? [];
@@ -81,6 +88,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 );
             }
         }
+    }
+
+    // =====================================================
+    // Selected Variants
+    // =====================================================
+    $selectedVariants = [];
+
+    $submittedVariants = $_POST['variants'] ?? [];
+
+    if (is_array($submittedVariants)) {
+        foreach($selected as $medalId){
+            if (!isset($medals[$medalId]['variants'])) {
+                continue;
+            }
+
+            $options = $medals[$medalId]['variants'];
+
+            $variantIds = $submittedVariants[$medalId] ?? ['none'];
+
+            // Normalise single selections into an array
+            if (!is_array($variantIds)) {
+                $variantIds = [$variantIds];
+            }
+
+            foreach ($variantIds as $variantId) {
+
+                if (
+                    is_string($variantId) &&
+                    isset($options[$variantId])
+                ) {
+                    $selectedVariants[$medalId][] = $options[$variantId];
+                }
+            }
+
+            // Remove duplicate entries if necessary
+            if (isset($selectedVariants[$medalId])) {
+                $selectedVariants[$medalId] = array_values(
+                    array_unique($selectedVariants[$medalId], SORT_REGULAR)
+                );
+            }
+        }   
     }
 }
 ?>
@@ -137,8 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         ?>
             <section id="medalRack" class="row medal-rack border rounded bg-white">
-                <div class="col-12"><?= renderMedalText($selectedMedals); ?></div>
-                <div class="col-12"><?= renderMedalText($medals); ?></div>
+                <div class="col-12"><?= renderMedalText($selectedMedals, $selectedDevices); ?></div>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="ribbon-rack" data-bs-toggle="tab" data-bs-target="#ribbon-rack-pane" type="button" role="tab" aria-controls="ribbon-rack-pane" aria-selected="true">Ribbon Rack</button>
@@ -151,11 +198,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="tab-pane show active" id="ribbon-rack-pane" role="tabpanel" aria-labelledby="ribbon-rack" tabindex="0">
                             <div class="row">
                                 <div class="col-12">
-                                    <?= renderRibbonRack($selectedMedals, $selectedDevices, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE); ?>
+                                    <?= renderRibbonRack($selectedMedals, $selectedDevices, $selectedVariants, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE); ?>
                                 </div>
                                 <?php if($SHOW_ALL_MEDAL_RACK){ ?> 
                                     <div class="col-12">
-                                        <?= renderRibbonRack($medals, $selectedDevices, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE); ?>
+                                        <?= renderRibbonRack($medals, $selectedDevices, $selectedVariants, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE); ?>
                                     </div>
                                 <?php } ?>
                             </div>
@@ -163,11 +210,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="tab-pane" id="medal-rack-pane" role="tabpanel" aria-labelledby="medal-rack" tabindex="0">
                             <div class="row">
                                 <div class="col-12">
-                                    <?= renderMedalRack($selectedMedals, $selectedDevices, $RIBBON_WIDTH, $RIBBON_HEIGHT_FULL, $SCALE * $FULL_MEDAL_ADITIONAL_SCALE); ?>
+                                    <?= renderMedalRack($selectedMedals, $selectedDevices, $selectedVariants, $RIBBON_WIDTH, $RIBBON_HEIGHT_FULL, $SCALE * $FULL_MEDAL_ADITIONAL_SCALE); ?>
                                 </div>
                                 <?php if($SHOW_ALL_MEDAL_RACK){ ?> 
                                     <div class="col-12">
-                                        <?= renderMedalRack($medals, $selectedDevices, $RIBBON_WIDTH, $RIBBON_HEIGHT_FULL, $SCALE); ?>
+                                        <?= renderMedalRack($medals, $selectedDevices, $selectedVariants, $RIBBON_WIDTH, $RIBBON_HEIGHT_FULL, $SCALE); ?>
                                     </div>
                                 <?php } ?>
                             </div>
@@ -178,53 +225,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- SCROLLABLE MEDAL CATALOGUE -->
         <main class="medal-catalogue border rounded">
-
             <form id="medalForm" method="POST" action="">
 
                 <div class="row row-cols-1 xl:row-cols-6 lg:row-cols-4 md:row-cols-3 sm:row-cols-2 g-4">
 
                     <?php foreach ($medals as $medalId => $medal) { ?>
-                        <?= renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE, in_array($medal, $selectedMedals, true), $selectedDevices); ?>
+                        <?= renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE, in_array($medal, $selectedMedals, true), $selectedDevices, $selectedVariants, $SHOW_TAGS); ?>
                     <?php } ?>
 
                 </div>
 
             </form>
 
+
         </main>
+        <?php if($SHOW_TAGS){ ?>
 
-        <!-- Footer Tag List -->
-        <section class="tag-container border rounded bg-white">
+            <!-- Footer Tag List -->
+            <section class="tag-container border rounded bg-white">
 
-            <button
-                type="button"
-                class="badge badge-outline theme-primary tag-filter active"
-                data-tag="all"
-            >
-                All Medals
-            </button>
+                <button
+                    type="button"
+                    class="badge badge-outline theme-primary tag-filter active"
+                    data-tag="all"
+                >
+                    All Medals
+                </button>
 
-            <?php if ($tags !== []) { ?>
+                <?php if ($tags !== []) { ?>
 
-                <?php foreach ($tags as $tag) { ?>
+                    <?php foreach ($tags as $tag) { ?>
 
-                    <button
-                        type="button"
-                        class="badge badge-outline theme-primary tag-filter"
-                        data-tag="<?= e($tag) ?>"
-                    >
-                        <?= e($tag) ?>
-                    </button>
+                        <button
+                            type="button"
+                            class="badge badge-outline theme-primary tag-filter"
+                            data-tag="<?= e($tag) ?>"
+                        >
+                            <?= e($tag) ?>
+                        </button>
+
+                    <?php } ?>
+
+                <?php } else { ?>
+
+                    No tags set up.
 
                 <?php } ?>
 
-            <?php } else { ?>
-
-                No tags set up.
-
-            <?php } ?>
-
-        </section>
+            </section>
+        <?php } ?>
     </div>
     <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-+PW0IDVGGwmpaBQvcXY+W0BcpHpITFB3dSfSoGvDdHtLbrLpSbpGcvtQRM/BJpz+" crossorigin="anonymous"></script>
     <script>

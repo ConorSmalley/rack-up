@@ -175,7 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </header>
 
         <!-- MEDAL RACK -->
-        <?php if (!empty($selectedMedals) || !empty($medals)) { 
+        <?php if (!empty($selectedMedals)) { 
             $totalMedalCount = count($selectedMedals);
             $currentMedalCount = 0;
 

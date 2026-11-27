@@ -26,7 +26,8 @@ $medals = [
                 ]
             ],
         ],
-        'tags' => ['Gallantry', 'Highest-Awards'],
+        'medal-shape' => 'cross',
+         'tags' => ['Gallantry', 'Highest-Awards'],
     ],
     'gc' => [
         'name' => 'George Cross',
@@ -52,6 +53,7 @@ $medals = [
                 ]
             ],
         ],
+        'medal-shape' => 'cross',
         'tags' => ['Gallantry', 'Highest-Awards'],
     ],
     // 100–199	Orders of chivalry
@@ -79,6 +81,7 @@ $medals = [
                 ]
             ],
         ],
+        'medal-shape' => 'amalfi-cross',
 
         'tags' => ['St-John'],
     ],
@@ -99,6 +102,7 @@ $medals = [
                 ['name' => 'Dark Blue', 'hex' => '#00205B', 'ratio' => 2],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Military', 'Distinguished Service', 'Operational'],
     ],
     // 200–299	Decorations
@@ -126,6 +130,7 @@ $medals = [
 
 
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Gallantry'],
     ],
     'military_cross' => [
@@ -149,6 +154,7 @@ $medals = [
             ],
 
         ],
+        'medal-shape' => 'cross',
         'tags' => ['Gallantry'],
     ],
     'distinguished_service_cross' => [
@@ -168,6 +174,7 @@ $medals = [
                 ['name' => 'White', 'hex' => '#FFFFFF', 'ratio' => 1],
             ],
         ],
+        'medal-shape' => 'cross',
         'tags' => ['Gallantry', 'Royal Navy', 'Naval'],
     ],
     'distinguished_flying_cross' => [
@@ -194,6 +201,7 @@ $medals = [
                 ['name' => 'Violet', 'hex' => '#4B286D', 'ratio' => 1],
             ],
         ],
+        'medal-shape' => 'cross',
         'tags' => ['Gallantry', 'Royal Air Force', 'Aviation'],
     ],
     'air_force_cross' => [
@@ -219,6 +227,7 @@ $medals = [
                 ['name' => 'Red',   'hex' => '#C8102E', 'ratio' => 1],
             ],
         ],
+        'medal-shape' => 'cross',
         'tags' => ['Gallantry', 'Royal Air Force', 'Aviation'],
     ],
     'royal_red_cross_first_class' => [
@@ -239,6 +248,7 @@ $medals = [
             ],
 
         ],
+        'medal-shape' => 'cross',
         'tags' => ['Nursing', 'Medical', 'Meritorious Service'],
     ],
     'royal_red_cross_associate' => [
@@ -259,6 +269,7 @@ $medals = [
             ],
 
         ],
+        'medal-shape' => 'cross',
         'tags' => ['Nursing', 'Medical', 'Meritorious Service'],
     ],
     'royal_victorian_medal' => [
@@ -282,6 +293,7 @@ $medals = [
                 ['name' => 'Red',       'hex' => '#C8102E', 'ratio' => 0.12],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Royal', 'Service', 'Meritorious Service'],
     ],
     'british_empire_medal' => [
@@ -325,7 +337,7 @@ $medals = [
                 ],
             ],
         ],
-
+        'medal-shape' => 'circular',
         'tags' => ['British Empire', 'Service'],
     ],
     // 300–399	Gallantry and distinguished conduct medals
@@ -352,6 +364,7 @@ $medals = [
                 ['name' => 'Crimson', 'hex' => '#A51C30', 'ratio' => 4],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Gallantry', 'Civilian', 'Military'],
     ],
     'military_medal' => [
@@ -378,6 +391,7 @@ $medals = [
                 ['name' => 'Dark Blue', 'hex' => '#002B7F', 'ratio' => 5],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Gallantry'],
     ],
     'kings_gallantry_medal' => [
@@ -399,6 +413,7 @@ $medals = [
                 ['name' => 'Garter Blue', 'hex' => '#1D3C78', 'ratio' => 5],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Gallantry', 'Civilian', 'Military'],
     ],
     // 400–409	Pre-1914 campaign medals
@@ -423,6 +438,7 @@ $medals = [
                 ['name' => 'Dark Blue', 'hex' => '#006A4E', 'ratio' => 1],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Inter-War'],
         'devices' => [
             'multiple' => true,
@@ -483,6 +499,7 @@ $medals = [
                 ['name' => 'Blue', 'hex' => '#244A78', 'ratio' => 1],
             ],
         ],
+        'medal-shape' => 'star4',
         'tags' => ['WW1'],
     ],
     'british_war_medal' => [
@@ -510,6 +527,7 @@ $medals = [
                 ['name' => 'Blue', 'hex' => '#183B68', 'ratio' => 3],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['WW1'],
     ],
     'victory_medal' => [
@@ -578,6 +596,7 @@ $medals = [
                 ['name' => 'Violet', 'hex' => '#654078', 'ratio' => 1],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['WW1'],
     ],
     // 420–439	Second World War
@@ -601,6 +620,7 @@ $medals = [
                 ['name' => 'Pale Blue', 'hex' => '#9BCBEB', 'ratio' => 1],
             ],
         ],
+        'medal-shape' => 'star',
         'tags' => ['WW2'],
         'devices' => [
             'label' => 'Ribbon clasp / device',
@@ -659,6 +679,7 @@ $medals = [
                 ['name' => 'Dark Green', 'hex' => '#285C50', 'ratio' => 5],
             ],
         ],
+        'medal-shape' => 'star',
         'tags' => ['WW2'],
         'devices' => [
             'label' => 'Campaign clasp',
@@ -722,6 +743,7 @@ $medals = [
                 ['name' => 'Air Force Blue', 'hex' => '#6B9BC5', 'ratio' => 7],
             ],
         ],
+        'medal-shape' => 'star',
         'tags' => ['WW2'],
     ],
     'air_crew_europe_star' => [
@@ -746,6 +768,7 @@ $medals = [
                 ['name' => 'Black', 'hex' => '#171717', 'ratio' => 4],
             ],
         ],
+        'medal-shape' => 'star',
         'tags' => ['WW2'],
         'devices' => [
             'label' => 'Campaign clasp',
@@ -807,6 +830,7 @@ $medals = [
                 ['name' => 'Sand', 'hex' => '#CDBB91', 'ratio' => 10],
             ],
         ],
+        'medal-shape' => 'star',
         'tags' => ['WW2'],
         'devices' => [
             'label' => 'Ribbon clasp / device',
@@ -882,6 +906,7 @@ $medals = [
                 ['name' => 'Red', 'hex' => '#C52B36', 'ratio' => 4],
             ],
         ],
+        'medal-shape' => 'star',
         'tags' => ['WW2'],
         'devices' => [
             'label' => 'Ribbon clasp / device',
@@ -927,6 +952,7 @@ $medals = [
                 ['name' => 'Dark Blue', 'hex' => '#173B67', 'ratio' => 3.5],
             ],
         ],
+        'medal-shape' => 'star',
         'tags' => ['WW2'],
         'devices' => [
             'label' => 'Ribbon clasp / device',
@@ -970,6 +996,7 @@ $medals = [
                 ['name' => 'Red', 'hex' => '#C83D42', 'ratio' => 1],
             ],
         ],
+        'medal-shape' => 'star',
         'tags' => ['WW2'],
     ],
     'france_germany_star' => [
@@ -994,6 +1021,7 @@ $medals = [
                 ['name' => 'Blue', 'hex' => '#21468B', 'ratio' => 1],
             ],
         ],
+        'medal-shape' => 'star',
         'tags' => ['WW2'],
         'devices' => [
             'label' => 'Campaign clasp',
@@ -1041,6 +1069,7 @@ $medals = [
                 ['name' => 'Green', 'hex' => '#267447', 'ratio' => 4.5],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['WW2'],
     ],
     'war_medal_1939_45' => [
@@ -1068,6 +1097,7 @@ $medals = [
                 ['name' => 'Red', 'hex' => '#C8102E', 'ratio' => 6.5],
             ],
         ],
+        'medal-shape' => 'star',
         'tags' => ['WW2'],
     ],
     // 440–459	Post-war campaign medals
@@ -1090,6 +1120,7 @@ $medals = [
                 ['name' => 'Green', 'hex' => '#006B3F', 'ratio' => 2],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Campaign', 'Operational Service', 'Military'],
     ],
     'iraq_medal' => [
@@ -1111,6 +1142,7 @@ $medals = [
                 ['name' => 'Sand', 'hex' => '#D2B48C', 'ratio' => 11],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Campaign', 'Operational Service', 'Military'],
     ],
     'operational_service_medal_sierra_leone' => [
@@ -1135,6 +1167,7 @@ $medals = [
             ],
 
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Campaign', 'Operational Service', 'Sierra Leone', 'British Armed Forces'],
     ],
     'operational_service_medal_afghanistan' => [
@@ -1149,16 +1182,17 @@ $medals = [
         'ribbon' => [
             'suspension' => 'bar',
             'stripes' => [
-            ['name' => 'Buff', 'hex' => '#C2A378', 'ratio' => 2],
-            ['name' => 'Light Blue', 'hex' => '#6BA4B8', 'ratio' => 2],
-            ['name' => 'Navy Blue', 'hex' => '#173B67', 'ratio' => 2],
-            ['name' => 'Red', 'hex' => '#C8102E', 'ratio' => 5],
-            ['name' => 'Navy Blue', 'hex' => '#173B67', 'ratio' => 2],
-            ['name' => 'Light Blue', 'hex' => '#6BA4B8', 'ratio' => 2],
-            ['name' => 'Buff', 'hex' => '#C2A378', 'ratio' => 2],
-        ],
+                ['name' => 'Buff', 'hex' => '#C2A378', 'ratio' => 2],
+                ['name' => 'Light Blue', 'hex' => '#6BA4B8', 'ratio' => 2],
+                ['name' => 'Navy Blue', 'hex' => '#173B67', 'ratio' => 2],
+                ['name' => 'Red', 'hex' => '#C8102E', 'ratio' => 5],
+                ['name' => 'Navy Blue', 'hex' => '#173B67', 'ratio' => 2],
+                ['name' => 'Light Blue', 'hex' => '#6BA4B8', 'ratio' => 2],
+                ['name' => 'Buff', 'hex' => '#C2A378', 'ratio' => 2],
+            ],
 
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Campaign', 'Operational Service', 'Afghanistan', 'British Armed Forces'],
     ],
     'operational_service_medal_droc' => [
@@ -1183,6 +1217,7 @@ $medals = [
             ],
 
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Campaign', 'Operational Service', 'Democratic Republic of Congo', 'British Armed Forces'],
     ],
     'operational_service_medal_iraq_syria' => [
@@ -1207,6 +1242,7 @@ $medals = [
             ],
 
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Campaign', 'Operational Service', 'Iraq', 'Syria', 'Operation SHADER', 'British Armed Forces'],
     ],
     // 460–479	Modern operational service medals
@@ -1229,6 +1265,7 @@ $medals = [
                 ['name' => 'Green', 'hex' => '#006B3F', 'ratio' => 1],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Long Service', 'Operational Service', 'Military'],
     ],
     'wider_service_medal' => [
@@ -1255,6 +1292,7 @@ $medals = [
             ],
 
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Operational Service', 'Military', 'Civilian Service'],
     ],
 
@@ -1282,6 +1320,7 @@ $medals = [
             ],
 
         ],
+        'medal-shape' => 'circular',
         'devices' => [
             'multiple' => true,
             'label' => 'Ribbon clasp / device',
@@ -1318,6 +1357,7 @@ $medals = [
                 ]
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Humanitarian', 'Operational Service', 'Military'],
     ],
     'nuclear_test_medal' => [
@@ -1344,6 +1384,7 @@ $medals = [
             ],
 
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Nuclear Testing', 'Commemorative', 'Military', 'Civilian Service'],
     ],
     // 480–499	Other campaign and operational service
@@ -1372,6 +1413,7 @@ $medals = [
                 ['name' => 'White', 'hex' => '#F4F1E8', 'ratio' => 1],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Royal', 'Coronation'],
     ],
     'queen_elizabeth_ii_silver_jubilee_1977' => [
@@ -1398,6 +1440,7 @@ $medals = [
                 ['name' => 'Red', 'hex' => '#C8102E', 'ratio' => 2],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Royal', 'Jubilee'],
     ],
     'queen_elizabeth_ii_golden_jubilee_2002' => [
@@ -1424,6 +1467,7 @@ $medals = [
                 ['name' => 'Red', 'hex' => '#C8102E', 'ratio' => 1],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Royal', 'Jubilee'],
     ],
     'queen_elizabeth_ii_diamond_jubilee_2012' => [
@@ -1450,6 +1494,7 @@ $medals = [
                 ['name' => 'Teal', 'hex' => '#008C95', 'ratio' => 2],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Royal', 'Jubilee'],
     ],
     'queen_elizabeth_ii_platinum_jubilee_2022' => [
@@ -1474,6 +1519,7 @@ $medals = [
                 ['name' => 'Platinum Grey', 'hex' => '#C5C7C9', 'ratio' => 1],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Royal', 'Jubilee'],
     ],
     'king_charles_iii_coronation_2023' => [
@@ -1500,6 +1546,7 @@ $medals = [
                 ['name' => 'Red', 'hex' => '#C8102E', 'ratio' => 1],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Royal', 'Coronation'],
     ],
     // 600–699	Efficiency and long service
@@ -1523,6 +1570,7 @@ $medals = [
                 ['name' => 'Yellow', 'hex' => '#D8B93E', 'ratio' => 1],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Long-Service'],
     ],
     'volunteer_reserves_service_medal' => [
@@ -1567,6 +1615,7 @@ $medals = [
                 ],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Long-Service'],
         'devices' => [
             'label' => 'Service recognition',
@@ -1658,6 +1707,7 @@ $medals = [
                 ['name' => 'Yellow',     'hex' => '#D8B93E', 'ratio' => 10],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Long-Service'],
         'devices' => [
             'label' => 'Service recognition',
@@ -1744,6 +1794,7 @@ $medals = [
                 ['name' => 'White', 'hex' => '#FFFFFF', 'ratio' => 1],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Long Service', 'Meritorious Service', 'Military'],
     ],
     'kings_volunteer_reserves_medal' => [
@@ -1765,6 +1816,7 @@ $medals = [
                 ['name' => 'Gold',       'hex' => '#D4AF37', 'ratio' => 0.7],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Military', 'Reserve Forces', 'Meritorious Service'],
     ],
     'army_long_service_good_conduct_medal' => [
@@ -1785,6 +1837,7 @@ $medals = [
             ],
 
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Long Service', 'Good Conduct', 'British Army'],
     ],
     'royal_navy_long_service_good_conduct_medal' => [
@@ -1805,6 +1858,7 @@ $medals = [
             ],
 
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Long Service', 'Good Conduct', 'Royal Navy'],
     ],
     'raf_long_service_good_conduct_medal' => [
@@ -1826,6 +1880,7 @@ $medals = [
             ],
 
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Long Service', 'Good Conduct', 'Royal Air Force'],
     ],
     // 700–799	Organisational and voluntary service awards
@@ -1851,6 +1906,7 @@ $medals = [
                 ['name' => 'Black', 'hex' => '#000000', 'ratio' => 1],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Long-Service', 'St-John'],
         'devices' => [
             'label' => 'Service recognition',
@@ -1986,6 +2042,7 @@ $medals = [
                 ['name' => 'Black', 'hex' => '#000000', 'ratio' => 1],
             ],
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Long-Service', 'St-John'],
         'devices' => [
             'label' => 'Service recognition',
@@ -2077,6 +2134,7 @@ $medals = [
             ],
 
         ],
+        'medal-shape' => 'circular',
         'tags' => ['Marksmanship', 'Royal Navy', 'British Army', 'Royal Air Force'],
     ],
 ];

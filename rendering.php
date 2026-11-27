@@ -8,7 +8,7 @@ function e(string $value): string{
     );
 }
 
-function renderRibbon(array $ribbon, int $width = 160, int $height = 50, $RIBBON_ONLY = false, ?array $device = null): string {
+function renderRibbon(array $ribbon, int $width = 160, int $height = 50, $RIBBON_ONLY = false, ?array $device = null, string $medalShape = 'circular'): string {
 
     $stripes = $ribbon['stripes'] ?? [];
     $direction = $ribbon['direction'] ?? 'vertical';
@@ -40,8 +40,23 @@ function renderRibbon(array $ribbon, int $width = 160, int $height = 50, $RIBBON
     }
 
     $triangleHeight = $RIBBON_ONLY ? 0 : $height * 0.35;
+
+    $medalSize = $RIBBON_ONLY
+        ? 0
+        : min($width * 0.45, $height * 0.9);
+
+    $medalSize = $RIBBON_ONLY
+        ? 0
+        : $width;
+
+    $medalSpacing = $RIBBON_ONLY ? 0 : 4;
+    $medalSpacing = $RIBBON_ONLY ? 0 : 0;
+    
     $svgHeight = $height + $triangleHeight;
 
+    if (!$RIBBON_ONLY) {
+        $svgHeight += $medalSpacing + $medalSize;
+    }
     $diagonal = $direction === 'diagonal';
 
     // =========================================================
@@ -132,7 +147,7 @@ function renderRibbon(array $ribbon, int $width = 160, int $height = 50, $RIBBON
                         $x + $stripeWidth,
                         $height,
                         $width / 2,
-                        $svgHeight,
+                        $height + $triangleHeight,
                         e($stripe['hex'])
                     );
 
@@ -150,10 +165,10 @@ function renderRibbon(array $ribbon, int $width = 160, int $height = 50, $RIBBON
                         $height,
 
                         $width,
-                        $svgHeight,
+                        $height + $triangleHeight,
 
                         $x,
-                        $svgHeight,
+                        $height + $triangleHeight,
                         e($stripe['hex'])
                     );
                 }
@@ -186,8 +201,8 @@ function renderRibbon(array $ribbon, int $width = 160, int $height = 50, $RIBBON
                     </defs>',
                     $clipId,
                     $width,
-                    $svgHeight,
-                    $svgHeight,
+                    $height + $triangleHeight,
+                    $height + $triangleHeight,
                     $height
                 );
                 // echo $width . ' - ' . $height . ' - ' . $width / 2 . ' - ' . $svgHeight . ' - ' . $height;
@@ -534,6 +549,25 @@ function renderRibbon(array $ribbon, int $width = 160, int $height = 50, $RIBBON
     }
 
     // =========================================================
+    // MEDAL BODY
+    // =========================================================
+
+    $medalSvg = '';
+
+    if (!$RIBBON_ONLY) {
+
+        $medalY = $height + $triangleHeight
+            + $medalSpacing
+            + ($medalSize / 2);
+
+        $medalSvg = renderMedalShape(
+            $medalShape,
+            $width / 2,
+            $medalY,
+            $medalSize
+        );
+    }
+    // =========================================================
     // FINAL SVG
     // =========================================================
 
@@ -547,7 +581,179 @@ function renderRibbon(array $ribbon, int $width = 160, int $height = 50, $RIBBON
         $svgHeight,
         $width,
         $svgHeight
-    ) . $rectangles . $deviceSvg . '</svg>';
+    ) . $rectangles . $medalSvg . $deviceSvg . '</svg>';
+}
+
+
+function renderMedalShape(string $shape, float $cx, float $cy, float $size, string $colour = '#C0C0C0'): string {
+
+    $half = $size / 2;
+
+    $shapes = [
+
+        'circular' => sprintf(
+            '<circle cx="%.2f" cy="%.2f" r="%.2f"/>',
+            $cx, $cy, $half
+        ),
+
+        'oval' => sprintf(
+            '<ellipse cx="%.2f" cy="%.2f" rx="%.2f" ry="%.2f"/>',
+            $cx, $cy, $half * 0.75, $half
+        ),
+
+        'square' => sprintf(
+            '<rect x="%.2f" y="%.2f" width="%.2f" height="%.2f"/>',
+            $cx - $half, $cy - $half, $size, $size
+        ),
+
+        'octagonal' => '',
+
+        'cross' => sprintf(
+            '<path d="
+                M %.2f %.2f
+                L %.2f %.2f
+                L %.2f %.2f
+                L %.2f %.2f
+                L %.2f %.2f
+                L %.2f %.2f
+                L %.2f %.2f
+                L %.2f %.2f
+                L %.2f %.2f
+                L %.2f %.2f
+                L %.2f %.2f
+                L %.2f %.2f
+                Z
+            "/>',
+            $cx - $half * 0.3, $cy - $half,
+            $cx + $half * 0.3, $cy - $half,
+            $cx + $half * 0.3, $cy - $half * 0.3,
+            $cx + $half, $cy - $half * 0.3,
+            $cx + $half, $cy + $half * 0.3,
+            $cx + $half * 0.3, $cy + $half * 0.3,
+            $cx + $half * 0.3, $cy + $half,
+            $cx - $half * 0.3, $cy + $half,
+            $cx - $half * 0.3, $cy + $half * 0.3,
+            $cx - $half, $cy + $half * 0.3,
+            $cx - $half, $cy - $half * 0.3,
+            $cx - $half * 0.3, $cy - $half * 0.3
+        ),
+
+        'amalfi-cross' => sprintf(
+            '<path d="
+                M 0 0
+                L 4 10 L 0 8 L -4 10 L 0 0
+                L 10 4 L 8 0 L 10 -4 L 0 0
+                L -4 -10 L 0 -8 L 4 -10 L 0 0
+                L -10 -4 L -8 0 L -10 4 L 0 0
+                Z
+            "
+            transform="translate(%.2f %.2f) scale(%.4f)"
+            fill="%s"
+            />',
+            $cx,
+            $cy - (2 * $size / 22),
+            $size / 22,
+            e($colour)
+        ),
+
+        'star' => '',
+    ];
+
+    // Octagonal medal
+    if ($shape === 'octagonal') {
+
+        $points = [];
+
+        for ($i = 0; $i < 8; $i++) {
+            $angle = (2 * M_PI * $i / 8) - (M_PI / 8);
+
+            $points[] = sprintf(
+                '%.2f,%.2f',
+                $cx + cos($angle) * $half,
+                $cy + sin($angle) * $half
+            );
+        }
+
+        $shapes['octagonal'] = sprintf(
+            '<polygon points="%s"/>',
+            implode(' ', $points)
+        );
+    }
+
+    // Maltese cross
+    if ($shape === 'maltese_cross') {
+
+        $points = [];
+
+        for ($i = 0; $i < 8; $i++) {
+
+            $angle = (2 * M_PI * $i / 8) - (M_PI / 2);
+
+            $outer = $half;
+            $inner = $half * 0.55;
+
+            foreach ([$outer, $inner] as $radius) {
+
+                $points[] = sprintf(
+                    '%.2f,%.2f',
+                    $cx + cos($angle) * $radius,
+                    $cy + sin($angle) * $radius
+                );
+            }
+        }
+
+        $shapes['maltese_cross'] = sprintf(
+            '<polygon points="%s"/>',
+            implode(' ', $points)
+        );
+    }
+
+    // Four or six-pointed star
+    if ($shape === 'star' || $shape === 'star4' || $shape === 'star6') {
+
+        $points = [];
+
+        $pointCount = $shape === 'star4' ? 4 : 6;
+
+        for ($i = 0; $i < $pointCount * 2; $i++) {
+
+            $angle = (2 * M_PI * $i / ($pointCount * 2)) - (M_PI / 2);
+
+            $radius = ($i % 2 === 0)
+                ? $half
+                : $half * 0.65;
+
+            $points[] = sprintf(
+                '%.2f,%.2f',
+                $cx + cos($angle) * $radius,
+                $cy + sin($angle) * $radius
+            );
+        }
+
+        $shapes[$shape] = sprintf(
+            '<polygon points="%s"/>',
+            implode(' ', $points)
+        );
+    }
+
+    if (!isset($shapes[$shape]) || $shapes[$shape] === '') {
+        throw new InvalidArgumentException(
+            'Unsupported medal shape: ' . $shape
+        );
+    }
+
+    return sprintf(
+        '<g fill="%s" stroke="#777777" stroke-width="1">
+            %s
+            <!--<circle cx="%.2f" cy="%.2f" r="%.2f"
+                fill="none" stroke="#999999" stroke-width="0.5"/>-->
+        </g>',
+        e($colour),
+        $shapes[$shape],
+        $cx,
+        $cy,
+        $half * 0.72
+    );
 }
 
 
@@ -654,13 +860,33 @@ function renderRack($medals, $devices, $variants, $RIBBON_WIDTH, $RIBBON_HEIGHT,
         $currentMedalCount = 4 - ($totalMedalCount%4);
     }
 
+    $medalIndex = 0;
+
     foreach ($medals as $medalId => $medal) {
-        
-        $html .= '<div class="col-auto">';
+        // echo $medalId . '<br />';
+        // $html .= '<div class="col-auto">';
+        $overlap = !$RIBBONS_ONLY && $totalMedalCount > 4;
+
+        $overlapStyle = $overlap
+            ? sprintf(
+                ' style="%sposition:relative; z-index:%d;"',
+                $medalIndex > 0
+                    ? sprintf('margin-left:-%.2fpx; ', ($RIBBON_WIDTH * $SCALE) * 0.25)
+                    : '',
+                $totalMedalCount - $medalIndex
+            )
+            : '';
+
+        $html .= '<div class="col-auto"' . $overlapStyle . '>';
         if(isset($medal['variants'])){
-            $html .= renderRibbon($variants[$medalId][0]['ribbon'], $RIBBON_WIDTH * $SCALE, $RIBBON_HEIGHT * $SCALE, $RIBBONS_ONLY, $devices[$medalId] ?? null);
+            if(isset($variants[$medalId])){
+                $html .= renderRibbon($variants[$medalId][0]['ribbon'], $RIBBON_WIDTH * $SCALE, $RIBBON_HEIGHT * $SCALE, $RIBBONS_ONLY, $devices[$medalId] ?? null, $medal['medal-shape']);
+            } else {
+                // If the variant isn't set up properly or errors then default to the first variant in the data
+                $html .= renderRibbon($medal['variants'][array_key_first($medal['variants'])]['ribbon'], $RIBBON_WIDTH * $SCALE, $RIBBON_HEIGHT * $SCALE, $RIBBONS_ONLY, $devices[$medalId] ?? null, $medal['medal-shape']);
+            }
         } else {
-            $html .= renderRibbon($medal['ribbon'], $RIBBON_WIDTH * $SCALE, $RIBBON_HEIGHT * $SCALE, $RIBBONS_ONLY, $devices[$medalId] ?? null);
+            $html .= renderRibbon($medal['ribbon'], $RIBBON_WIDTH * $SCALE, $RIBBON_HEIGHT * $SCALE, $RIBBONS_ONLY, $devices[$medalId] ?? null, $medal['medal-shape']);
         }
         $html .= '</div>';
         $currentMedalCount++;
@@ -669,6 +895,7 @@ function renderRack($medals, $devices, $variants, $RIBBON_WIDTH, $RIBBON_HEIGHT,
             $html .= '<div class="row d-flex flex-row flex-nowrap align-items-center justify-content-center g-0">';
             $currentMedalCount = 0;
         }
+        $medalIndex++;
     }
     $html .= '</div>';
     $html .= '</div>';
@@ -742,16 +969,18 @@ function renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, 
                 $RIBBON_HEIGHT_SHORT * $SCALE,
                 true,
                 null
+                // ,$medal['medal-shape']
             );
         }
     } else {
-    $html .= renderRibbon(
-        $medal['ribbon'],
-        $RIBBON_WIDTH * $SCALE,
-        $RIBBON_HEIGHT_SHORT * $SCALE,
-        true,
-        null
-    );
+        $html .= renderRibbon(
+            $medal['ribbon'],
+            $RIBBON_WIDTH * $SCALE,
+            $RIBBON_HEIGHT_SHORT * $SCALE,
+            true,
+            null
+            // ,$medal['medal-shape']
+        );
     }
     $html .= '<input'
         . ' type="checkbox"'
