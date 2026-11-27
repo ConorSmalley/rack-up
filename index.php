@@ -228,7 +228,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="row row-cols-1 xl:row-cols-6 lg:row-cols-4 md:row-cols-3 sm:row-cols-2 g-4">
 
                     <?php foreach ($medals as $medalId => $medal) { ?>
-                        <?= renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE, in_array($medal, $selectedMedals, true), $selectedDevices, $selectedVariants); ?>
+                        <?= renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE, in_array($medal, $selectedMedals, true), $selectedDevices, $selectedVariants, false); ?>
                     <?php } ?>
 
                 </div>

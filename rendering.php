@@ -710,7 +710,7 @@ function fullElement(string $element, string $id, string $class, string $datatag
     return openElement($element, $id, $class, $datatags, $for) . $content . closeElement($element);
 }
 
-function renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE, $selected, $selectedDevices, $selectedVariants) {
+function renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE, $selected, $selectedDevices, $selectedVariants, $showTags) {
     $html = '';
 
     $html .= '<div class="col medal-item" data-tags="' . e(implode(',', $medal['tags'] ?? [])) . '">';
@@ -938,28 +938,29 @@ function renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, 
     // =====================================================
     // CARD FOOTER
     // =====================================================
+    if ($showTags){
+        $html .= '<div class="card-footer fg-2">';
+        $html .= '<div class="d-flex justify-content-between align-items-start">';
+        if (empty($medal['tags'])) {
 
-    $html .= '<div class="card-footer fg-2">';
-    $html .= '<div class="d-flex justify-content-between align-items-start">';
+            $html .= 'No Tags';
 
-    if (empty($medal['tags'])) {
+        } else {
 
-        $html .= 'No Tags';
+            foreach ($medal['tags'] as $tag) {
 
-    } else {
+                $html .= '<span class="badge badge-outline theme-primary">'
+                    . e($tag)
+                    . '</span>';
 
-        foreach ($medal['tags'] as $tag) {
-
-            $html .= '<span class="badge badge-outline theme-primary">'
-                . e($tag)
-                . '</span>';
+            }
 
         }
-
+        $html .= '</div>';
+        $html .= '</div>';
     }
 
-    $html .= '</div>';
-    $html .= '</div>';
+    
 
     $html .= '</label>';
     $html .= '</div>';
