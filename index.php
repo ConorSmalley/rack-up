@@ -5,7 +5,7 @@ require_once('rendering.php');
 
 $SCALE = 3;
 $RIBBON_WIDTH = 32;
-$RIBBON_HEIGHT_FULL = 70;
+$RIBBON_HEIGHT_FULL = 50;
 $RIBBON_HEIGHT_SHORT = 10;
 $SHOW_ALL_MEDAL_RACK = false;
 

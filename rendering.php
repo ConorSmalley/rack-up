@@ -9,7 +9,10 @@ function e(string $value): string{
 }
 
 function renderRibbon(array $ribbon, int $width = 160, int $height = 50, $RIBBON_ONLY = false, ?array $device = null): string {
+
     $stripes = $ribbon['stripes'] ?? [];
+    $direction = $ribbon['direction'] ?? 'vertical';
+    $suspension = $ribbon['suspension'] ?? 'bar';
 
     if (!$stripes) {
         return '';
@@ -27,7 +30,7 @@ function renderRibbon(array $ribbon, int $width = 160, int $height = 50, $RIBBON
             );
         }
 
-        if (!preg_match('/^#[0-9a-fA-F]{6}$/', $stripe['hex'])) {
+        if (!preg_match('/^#[0-9a-fA-F]{6}$/', $stripe['hex'] ?? '')) {
             throw new InvalidArgumentException(
                 'Invalid ribbon colour.'
             );
@@ -39,56 +42,234 @@ function renderRibbon(array $ribbon, int $width = 160, int $height = 50, $RIBBON
     $triangleHeight = $RIBBON_ONLY ? 0 : $height * 0.35;
     $svgHeight = $height + $triangleHeight;
 
-    $x = 0;
+    $diagonal = $direction === 'diagonal';
+
+    // =========================================================
+    // RENDER STRIPES
+    // =========================================================
+
     $rectangles = '';
+    $x = 0;
+
+    // Oversized square ensures the rotated stripes cover
+    // the entire ribbon, including its triangular lower section.
+    $patternSize = $diagonal
+        ? $width + $svgHeight
+        : $width;
+
+    $diagonalStripeUnit = 10;
 
     foreach ($stripes as $index => $stripe) {
+        if ($diagonal) {
+            $stripeWidth = $diagonalStripeUnit * ($stripe['ratio'] / $total);
+        } else {
+            $stripeWidth = ($index === count($stripes) - 1)
+                ? $patternSize - $x
+                : $patternSize * ($stripe['ratio'] / $total);
+        }
+        if ($diagonal) {
 
-        $stripeWidth = ($index === count($stripes) - 1)
-            ? $width - $x
-            : $width * ($stripe['ratio'] / $total);
+            $diagonalStripeUnit = 100;
 
-        // $rectangles .= sprintf(
-        //     '<rect x="%s" y="0" width="%s" height="%d" fill="%s"/>',
-        //     $x,
-        //     $stripeWidth + 0.02,
-        //     $height,
-        //     e($stripe['hex'])
-        // );
-        $rectangles .= sprintf(
-            '<rect x="%.2f" y="0" width="%.2f" height="%.2f" fill="%s"/>',
-            $x,
-            $stripeWidth + 0.02,
-            $height,
-            e($stripe['hex'])
-        );
+            $patternWidth = $diagonalStripeUnit * count($stripes);
 
-        if (!$RIBBON_ONLY) {
+            // Calculate how many complete patterns are required.
+            $repeatCount = (int)ceil($patternSize / $patternWidth) + 2;
+
+            for ($repeat = 0; $repeat < $repeatCount; $repeat++) {
+
+                foreach ($stripes as $stripe) {
+
+                    $currentStripeWidth = $diagonalStripeUnit
+                        * ($stripe['ratio'] / $total);
+
+                    $rectangles .= sprintf(
+                        '<rect
+                            x="%.2f"
+                            y="0"
+                            width="%.2f"
+                            height="%.2f"
+                            fill="%s"
+                        />',
+                        $x,
+                        $currentStripeWidth + 0.02,
+                        $patternSize,
+                        e($stripe['hex'])
+                    );
+
+                    $x += $currentStripeWidth;
+                }
+            }
+
+        } else {
+
+            // Original vertical stripe rendering.
 
             $rectangles .= sprintf(
-                '<polygon
-                    points="%.2f,%.2f %.2f,%.2f %.2f,%.2f"
+                '<rect
+                    x="%.2f"
+                    y="0"
+                    width="%.2f"
+                    height="%.2f"
                     fill="%s"
                 />',
                 $x,
+                $stripeWidth + 0.02,
                 $height,
-                $x + $stripeWidth,
-                $height,
-                $width / 2,
-                $svgHeight,
                 e($stripe['hex'])
             );
+
+            if (!$RIBBON_ONLY) {
+                if($suspension === 'ring'){
+
+                    $rectangles .= sprintf(
+                        '<polygon
+                            points="%.2f,%.2f %.2f,%.2f %.2f,%.2f"
+                            fill="%s"
+                        />',
+                        $x,
+                        $height,
+                        $x + $stripeWidth,
+                        $height,
+                        $width / 2,
+                        $svgHeight,
+                        e($stripe['hex'])
+                    );
+
+                    
+                } else if ($suspension === 'bar'){
+                    $rectangles .= sprintf(
+                        '<polygon
+                            points="%.2f,%.2f %.2f,%.2f %.2f,%.2f %.2f,%.2f"
+                            fill="%s"
+                        />',
+                        $x,
+                        $height,
+
+                        $x + $stripeWidth,
+                        $height,
+
+                        $width,
+                        $svgHeight,
+
+                        $x,
+                        $svgHeight,
+                        e($stripe['hex'])
+                    );
+                }
+            }
         }
 
         $x += $stripeWidth;
     }
 
+    // =========================================================
+    // DIAGONAL STRIPE ROTATION
+    // =========================================================
+
+    if ($diagonal) {
+
+        $clipId = 'ribbon-clip-' . uniqid();
+        if(!$RIBBON_ONLY){
+            if($suspension === 'bar'){
+                $clipPath = sprintf(
+                    '<defs>
+                        <clipPath id="%s">
+                            <path d="
+                                M 0 0
+                                H %d
+                                V %.2f
+                                L 0 %.2f
+                                Z
+                            "/>
+                        </clipPath>
+                    </defs>',
+                    $clipId,
+                    $width,
+                    $svgHeight,
+                    $svgHeight,
+                    $height
+                );
+                // echo $width . ' - ' . $height . ' - ' . $width / 2 . ' - ' . $svgHeight . ' - ' . $height;
+                // m 0 0 
+                // H 48
+                // V 105
+                // L 24 141.75
+                // L 0 105
+                // Z
+
+
+            } else if ($suspension === 'ring'){
+                $clipPath = sprintf(
+                    '<defs>
+                        <clipPath id="%s">
+                            <path d="
+                                M 0 0
+                                H %d
+                                V %.2f
+                                L %.2f %d
+                                L 0 %.2f
+                                Z
+                            "/>
+                        </clipPath>
+                    </defs>',
+                    $clipId,
+                    $width,
+                    $height,
+                    $width / 2,
+                    $svgHeight,
+                    $height
+                );
+            }
+        } else {
+             $clipPath = sprintf(
+                '<defs>
+                    <clipPath id="%s">
+                        <rect width="%d" height="%d"/>
+                    </clipPath>
+                </defs>',
+                $clipId,
+                $width,
+                $height
+            );
+        }
+        
+        // Clip to the actual ribbon silhouette.
+        
+        
+       
+
+        // Centre the oversized stripe pattern,
+        // rotate it 45 degrees and clip to the ribbon.
+        $rectangles = $clipPath . sprintf(
+            '<g clip-path="url(#%s)">
+                <g transform="translate(%.2f %.2f)">
+                    <g transform="rotate(-45)">
+                        <g transform="translate(%.2f %.2f)">
+                            %s
+                        </g>
+                    </g>
+                </g>
+            </g>',
+            $clipId,
+            $width / 2,
+            $svgHeight / 2,
+            -$patternSize / 2,
+            -$patternSize / 2,
+            $rectangles
+        );
+    }
+
+    // =========================================================
+    // PERMANENT RIBBON DEVICES
+    // =========================================================
+
     $deviceSvg = '';
 
     $permanentDevice = $ribbon['permanent_devices']['ribbon'] ?? null;
 
-    if($RIBBON_ONLY && $permanentDevice !== null){
-        // Handle permanent riddon devices here 
+    if ($RIBBON_ONLY && $permanentDevice !== null) {
+
         $type = $permanentDevice['type'] ?? 'none';
         $colour = $permanentDevice['colour'] ?? '#C0C0C0';
 
@@ -115,19 +296,25 @@ function renderRibbon(array $ribbon, int $width = 160, int $height = 50, $RIBBON
                 e($colour)
             );
         }
-
     }
-    
+
+    // =========================================================
+    // DEVICE SELECTION
+    // =========================================================
+
     $devices = [];
 
-    if($device !== null){
-        // We have some devices
+    if ($device !== null) {
+
         if ($RIBBON_ONLY) {
-            // Ribbon only: use the first device
+
+            // Ribbon only: use the first device.
             $devices = [reset($device)];
+
         } else {
-            // Medal: use every device
-            foreach($device as $childDevice){
+
+            // Medal: use every device.
+            foreach ($device as $childDevice) {
                 $devices[$childDevice['name']] = $childDevice;
             }
         }
@@ -140,6 +327,7 @@ function renderRibbon(array $ribbon, int $width = 160, int $height = 50, $RIBBON
     $medalBarOffset = 0;
 
     foreach ($devices as $item) {
+
         $details = $RIBBON_ONLY
             ? ($item['ribbon'] ?? null)
             : ($item['medal'] ?? null);
@@ -147,9 +335,6 @@ function renderRibbon(array $ribbon, int $width = 160, int $height = 50, $RIBBON
         if ($details === null) {
             continue;
         }
-        
-        // var_dump($details);
-        
 
         $type = $details['type'] ?? 'none';
 
@@ -195,6 +380,7 @@ function renderRibbon(array $ribbon, int $width = 160, int $height = 50, $RIBBON
                 );
             }
         }
+
         // =====================================================
         // ROSETTE
         // =====================================================
@@ -296,11 +482,17 @@ function renderRibbon(array $ribbon, int $width = 160, int $height = 50, $RIBBON
                 $medalBarOffset
             );
 
-            $medalBarOffset += max(1, (int)($details['count'] ?? 1));
+            $medalBarOffset += max(
+                1,
+                (int)($details['count'] ?? 1)
+            );
         }
     }
 
-    
+    // =========================================================
+    // FINAL SVG
+    // =========================================================
+
     return sprintf(
         '<svg xmlns="http://www.w3.org/2000/svg"
             class=""

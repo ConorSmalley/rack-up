@@ -15,6 +15,7 @@ $medals = [
 
         'description' => 'Awarded for most conspicuous bravery, or an act of valour or self-sacrifice in the presence of the enemy.',
         'ribbon' => [
+            'suspension' => 'bar',
             'stripes' => [
                 ['name' => 'Red', 'hex' => '#9E1B32', 'ratio' => 1],
             ],
@@ -34,6 +35,7 @@ $medals = [
 
         'description' => 'Awarded for acts of the greatest heroism or most conspicuous courage in circumstances of extreme danger, not necessarily in the presence of the enemy.',
         'ribbon' => [
+            'suspension' => 'bar',
             'stripes' => [
                 ['name' => 'Dark Blue', 'hex' => '#0A2240', 'ratio' => 1],
             ],
@@ -54,6 +56,7 @@ $medals = [
 
         'description' => 'Recognition of membership and rank within the Most Venerable Order of the Hospital of St John of Jerusalem.',
         'ribbon' => [
+            'suspension' => 'ring',
             'stripes' => [
                 ['name' => 'Black', 'hex' => '#000000', 'ratio' => 1],
             ],
@@ -77,6 +80,7 @@ $medals = [
         'discontinued' => null,
         'description' => 'Awarded for distinguished service during active operations against the enemy, principally recognising exceptional command and leadership.',
         'ribbon' => [
+            'suspension' => 'bar',
             'stripes' => [
                 ['name' => 'Dark Blue', 'hex' => '#00205B', 'ratio' => 2],
                 ['name' => 'Crimson', 'hex' => '#A51C30', 'ratio' => 8],
@@ -99,6 +103,7 @@ $medals = [
 
         'description' => 'Awarded for an act or acts of conspicuous gallantry during active operations against the enemy.',
         'ribbon' => [
+            'suspension' => 'bar',
             'stripes' => [
                 ['name' => 'Dark Blue', 'hex' => '#002B7F', 'ratio' => 3],
                 ['name' => 'White',     'hex' => '#FFFFFF', 'ratio' => 10],
@@ -124,6 +129,7 @@ $medals = [
 
         'description' => 'Awarded for exemplary gallantry during active operations against the enemy on land.',
         'ribbon' => [
+            'suspension' => 'bar',
             'stripes' => [
                 ['name' => 'White',  'hex' => '#FFFFFF', 'ratio' => 1],
                 ['name' => 'Purple', 'hex' => '#5C246E', 'ratio' => 1],
@@ -143,6 +149,7 @@ $medals = [
         'discontinued' => null,
         'description' => 'Awarded for exemplary gallantry during active operations against the enemy at sea.',
         'ribbon' => [
+            'suspension' => 'bar',
             'stripes' => [
                 ['name' => 'White', 'hex' => '#FFFFFF', 'ratio' => 1],
                 ['name' => 'Dark Blue', 'hex' => '#00205B', 'ratio' => 10],
@@ -161,7 +168,19 @@ $medals = [
         'discontinued' => null,
         'description' => 'Awarded for exemplary gallantry during active operations against the enemy while flying.',
         'ribbon' => [
-            'stripes' => [],
+            'suspension' => 'bar',
+            'direction' => 'diagonal',
+            'stripes' => [
+                
+                ['name' => 'White',  'hex' => '#FFFFFF', 'ratio' => 1],
+                ['name' => 'Violet', 'hex' => '#4B286D', 'ratio' => 1],
+                ['name' => 'White',  'hex' => '#FFFFFF', 'ratio' => 1],
+                ['name' => 'Violet', 'hex' => '#4B286D', 'ratio' => 1],
+                ['name' => 'White',  'hex' => '#FFFFFF', 'ratio' => 1],
+                ['name' => 'Violet', 'hex' => '#4B286D', 'ratio' => 1],
+                ['name' => 'White',  'hex' => '#FFFFFF', 'ratio' => 1],
+                ['name' => 'Violet', 'hex' => '#4B286D', 'ratio' => 1],
+            ],
         ],
         'tags' => ['Gallantry', 'Royal Air Force', 'Aviation'],
     ],
@@ -175,7 +194,18 @@ $medals = [
         'discontinued' => null,
         'description' => 'Awarded for exemplary gallantry while flying, not during active operations against the enemy.',
         'ribbon' => [
-            'stripes' => [],
+            'suspension' => 'bar',
+            'direction' => 'diagonal',
+            'stripes' => [
+                ['name' => 'White', 'hex' => '#FFFFFF', 'ratio' => 1],
+                ['name' => 'Red',   'hex' => '#C8102E', 'ratio' => 1],
+                ['name' => 'White', 'hex' => '#FFFFFF', 'ratio' => 1],
+                ['name' => 'Red',   'hex' => '#C8102E', 'ratio' => 1],
+                ['name' => 'White', 'hex' => '#FFFFFF', 'ratio' => 1],
+                ['name' => 'Red',   'hex' => '#C8102E', 'ratio' => 1],
+                ['name' => 'White', 'hex' => '#FFFFFF', 'ratio' => 1],
+                ['name' => 'Red',   'hex' => '#C8102E', 'ratio' => 1],
+            ],
         ],
         'tags' => ['Gallantry', 'Royal Air Force', 'Aviation'],
     ],
@@ -189,7 +219,13 @@ $medals = [
         'discontinued' => null,
         'description' => 'Awarded to members of the Nursing Services for exceptional devotion and competency in the performance of nursing duties over a continuous and long period.',
         'ribbon' => [
-            'stripes' => [],
+            'suspension' => 'bar',
+            'stripes' => [
+                ['name' => 'Crimson',   'hex' => '#9E1B32', 'ratio' => 0.35],
+                ['name' => 'Dark Blue', 'hex' => '#00247D', 'ratio' => 1],
+                ['name' => 'Crimson',   'hex' => '#9E1B32', 'ratio' => 0.35],
+            ],
+
         ],
         'tags' => ['Nursing', 'Medical', 'Meritorious Service'],
     ],
@@ -203,11 +239,80 @@ $medals = [
         'discontinued' => null,
         'description' => 'Awarded to members of the Nursing Services for special devotion and competency in the performance of nursing duties.',
         'ribbon' => [
-            'stripes' => [],
+            'suspension' => 'bar',
+            'stripes' => [
+                ['name' => 'Crimson',   'hex' => '#9E1B32', 'ratio' => 0.35],
+                ['name' => 'Dark Blue', 'hex' => '#00247D', 'ratio' => 1],
+                ['name' => 'Crimson',   'hex' => '#9E1B32', 'ratio' => 0.35],
+            ],
+
         ],
         'tags' => ['Nursing', 'Medical', 'Meritorious Service'],
     ],
+    'royal_victorian_medal' => [
+        'name' => 'Royal Victorian Medal',
+        'p' => 280,
+        'type' => 'service medal',
+        'category' => 'royal service',
+        'status' => 'current',
+        'introduced' => 1896,
+        'discontinued' => null,
+        'description' => 'Awarded by the Sovereign to recognise personal service to the Monarch or members of the Royal Family.',
+        'ribbon' => [
+            'suspension' => 'ring',
+            'stripes' => [
+                ['name' => 'Red',       'hex' => '#C8102E', 'ratio' => 0.12],
+                ['name' => 'White',     'hex' => '#FFFFFF', 'ratio' => 0.12],
+                ['name' => 'Red',       'hex' => '#C8102E', 'ratio' => 0.12],
+                ['name' => 'Dark Blue', 'hex' => '#00247D', 'ratio' => 1],
+                ['name' => 'Red',       'hex' => '#C8102E', 'ratio' => 0.12],
+                ['name' => 'White',     'hex' => '#FFFFFF', 'ratio' => 0.12],
+                ['name' => 'Red',       'hex' => '#C8102E', 'ratio' => 0.12],
+            ],
+        ],
+        'tags' => ['Royal', 'Service', 'Meritorious Service'],
+    ],
+    'british_empire_medal' => [
+        'name' => 'British Empire Medal',
+        'p' => 290,
+        'type' => 'medal',
+        'category' => 'meritorious service',
+        'status' => 'current',
+        'introduced' => 1917,
+        'discontinued' => null,
+        'description' => 'Awarded for meritorious civil or military service worthy of recognition by the Crown.',
+        'ribbon' => [
+            'suspension' => 'ring',
+            'stripes' => [],
+        ],
+        'tags' => ['Civilian', 'Military', 'Meritorious Service'],
+    ],
     // 300–399	Gallantry and distinguished conduct medals
+    'george_medal' => [
+        'name' => 'George Medal',
+        'p' => 300,
+        'type' => 'gallantry medal',
+        'category' => 'gallantry',
+        'status' => 'current',
+        'introduced' => 1940,
+        'discontinued' => null,
+        'description' => 'Awarded for acts of conspicuous bravery not involving the presence of the enemy.',
+        'ribbon' => [
+            'suspension' => 'ring',
+            'stripes' => [
+                ['name' => 'Crimson', 'hex' => '#A51C30', 'ratio' => 4],
+                ['name' => 'Dark Blue', 'hex' => '#00205B', 'ratio' => 1],
+                ['name' => 'Crimson', 'hex' => '#A51C30', 'ratio' => 4],
+                ['name' => 'Dark Blue', 'hex' => '#00205B', 'ratio' => 1],
+                ['name' => 'Crimson', 'hex' => '#A51C30', 'ratio' => 4],
+                ['name' => 'Dark Blue', 'hex' => '#00205B', 'ratio' => 1],
+                ['name' => 'Crimson', 'hex' => '#A51C30', 'ratio' => 4],
+                ['name' => 'Dark Blue', 'hex' => '#00205B', 'ratio' => 1],
+                ['name' => 'Crimson', 'hex' => '#A51C30', 'ratio' => 4],
+            ],
+        ],
+        'tags' => ['Gallantry', 'Civilian', 'Military'],
+    ],
     'military_medal' => [
         'name' => 'Military Medal',
         'p' => 310,
@@ -221,6 +326,7 @@ $medals = [
 
         'description' => 'Awarded for qualifying service in the North-West Frontier and associated operations.',
         'ribbon' => [
+            'suspension' => 'bar',
             'stripes' => [
                 ['name' => 'Dark Blue', 'hex' => '#002B7F', 'ratio' => 5],
                 ['name' => 'White',     'hex' => '#FFFFFF', 'ratio' => 2],
@@ -232,6 +338,27 @@ $medals = [
             ],
         ],
         'tags' => ['Gallantry'],
+    ],
+    'kings_gallantry_medal' => [
+        'name' => 'King\'s Gallantry Medal',
+        'p' => 320,
+        'type' => 'gallantry medal',
+        'category' => 'gallantry',
+        'status' => 'current',
+        'introduced' => 1974,
+        'discontinued' => null,
+        'description' => 'Awarded for acts of exemplary bravery not involving the presence of the enemy. It replaced the Queen\'s Gallantry Medal following the accession of King Charles III.',
+        'ribbon' => [
+            'suspension' => 'ring',
+            'stripes' => [
+                ['name' => 'Garter Blue', 'hex' => '#1D3C78', 'ratio' => 5],
+                ['name' => 'Pearl Grey', 'hex' => '#C9C8C5', 'ratio' => 3],
+                ['name' => 'Rose Pink', 'hex' => '#D98CA3', 'ratio' => 1],
+                ['name' => 'Pearl Grey', 'hex' => '#C9C8C5', 'ratio' => 3],
+                ['name' => 'Garter Blue', 'hex' => '#1D3C78', 'ratio' => 5],
+            ],
+        ],
+        'tags' => ['Gallantry', 'Civilian', 'Military'],
     ],
     // 400–409	Pre-1914 campaign medals
     'india_general_service_1909' => [
@@ -248,6 +375,7 @@ $medals = [
         'description' => 'Awarded for qualifying military service during campaigns and operations in India and on its frontiers between 1908 and 1935.',
 
         'ribbon' => [
+            'suspension' => 'bar',
             'stripes' => [
                 ['name' => 'Dark Blue', 'hex' => '#006A4E', 'ratio' => 1],
                 ['name' => 'Orange Yellow', 'hex' => '#002B7F', 'ratio' => 2],
@@ -307,6 +435,7 @@ $medals = [
         'description' => 'Awarded for qualifying service in a theatre of war between 5 August 1914 and 31 December 1915, subject to the applicable eligibility rules.',
 
         'ribbon' => [
+            'suspension' => 'ring',
             'stripes' => [
                 ['name' => 'Red', 'hex' => '#C8102E', 'ratio' => 1],
                 ['name' => 'White', 'hex' => '#F4F1E8', 'ratio' => 1],
@@ -329,6 +458,7 @@ $medals = [
         'description' => 'Awarded for qualifying service during the First World War and certain subsequent operations, including Russia.',
 
         'ribbon' => [
+            'suspension' => 'bar',
             'stripes' => [
                 ['name' => 'Blue', 'hex' => '#183B68', 'ratio' => 3],
                 ['name' => 'Black', 'hex' => '#171717', 'ratio' => 2],
@@ -354,6 +484,7 @@ $medals = [
 
         'description' => 'Awarded to qualifying military and civilian personnel who served in a theatre of war during the First World War.',
         'ribbon' => [
+            'suspension' => 'bar',
             'stripes' => [
                 ['name' => 'Violet', 'hex' => '#654078', 'ratio' => 1],
                 ['name' => 'Violet', 'hex' => '#5D437B', 'ratio' => 1],
@@ -422,6 +553,7 @@ $medals = [
 
         'description' => 'Awarded for qualifying operational service during the Second World War.',
         'ribbon' => [
+            'suspension' => 'ring',
             'stripes' => [
                 ['name' => 'Red', 'hex' => '#C8102E', 'ratio' => 1],
                 ['name' => 'Dark Blue', 'hex' => '#00205B', 'ratio' => 1],
@@ -480,6 +612,7 @@ $medals = [
 
         'description' => 'Awarded for qualifying service in the Atlantic and home waters, including certain maritime and air operations.',
         'ribbon' => [
+            'suspension' => 'ring',
             'stripes' => [
                 ['name' => 'Dark Blue', 'hex' => '#174A75', 'ratio' => 5],
                 ['name' => 'Blue', 'hex' => '#397DA5', 'ratio' => 5],
@@ -540,6 +673,7 @@ $medals = [
 
         'description' => 'Awarded retrospectively for qualifying service in the Arctic region during the Second World War.',
         'ribbon' => [
+            'suspension' => 'ring',
             'stripes' => [
                 ['name' => 'Air Force Blue', 'hex' => '#6B9BC5', 'ratio' => 7],
                 ['name' => 'Navy Blue', 'hex' => '#172D59', 'ratio' => 12],
@@ -567,6 +701,7 @@ $medals = [
 
         'description' => 'Awarded for qualifying operational flying service over Europe from UK bases during the Second World War.',
         'ribbon' => [
+            'suspension' => 'ring',
             'stripes' => [
                 ['name' => 'Black', 'hex' => '#171717', 'ratio' => 4],
                 ['name' => 'Yellow', 'hex' => '#E5C33B', 'ratio' => 2],
@@ -625,6 +760,7 @@ $medals = [
 
         'description' => 'Awarded for qualifying operational service in North Africa and associated Mediterranean territories.',
         'ribbon' => [
+            'suspension' => 'ring',
             'stripes' => [
                 ['name' => 'Sand', 'hex' => '#CDBB91', 'ratio' => 10],
                 ['name' => 'Dark Blue', 'hex' => '#173B67', 'ratio' => 3],
@@ -699,6 +835,7 @@ $medals = [
         'description' => 'Awarded for qualifying operational service in the Pacific theatre during the Second World War.',
 
         'ribbon' => [
+            'suspension' => 'ring',
             'stripes' => [
                 ['name' => 'Red', 'hex' => '#C52B36', 'ratio' => 4],
                 ['name' => 'Dark Green', 'hex' => '#155C3B', 'ratio' => 12],
@@ -743,6 +880,7 @@ $medals = [
 
         'description' => 'Awarded for qualifying operational service in the Burma campaign and specified surrounding areas.',
         'ribbon' => [
+            'suspension' => 'ring',
             'stripes' => [
                 ['name' => 'Dark Blue', 'hex' => '#173B67', 'ratio' => 3.5],
                 ['name' => 'Orange Yellow', 'hex' => '#E6A52E', 'ratio' => 4],
@@ -787,6 +925,7 @@ $medals = [
 
         'description' => 'Awarded for qualifying operational service in Italy, Sicily, Sardinia, Corsica, Greece, Yugoslavia and associated areas.',
         'ribbon' => [
+            'suspension' => 'ring',
             'stripes' => [
                 ['name' => 'Red', 'hex' => '#C83D42', 'ratio' => 1],
                 ['name' => 'White', 'hex' => '#F4F1E8', 'ratio' => 1],
@@ -810,6 +949,7 @@ $medals = [
 
         'description' => 'Awarded for qualifying operational service in France, Belgium, the Netherlands and Germany during the specified campaign period.',
         'ribbon' => [
+            'suspension' => 'ring',
             'stripes' => [
                 ['name' => 'Blue', 'hex' => '#21468B', 'ratio' => 1],
                 ['name' => 'White', 'hex' => '#F4F1E8', 'ratio' => 1],
@@ -859,8 +999,7 @@ $medals = [
         'description' => 'Awarded for qualifying non-operational service during the Second World War, including specified home defence and civil defence duties.',
         'ribbon' => [
             'orientation' => 'vertical',
-            'finish' => 'plain',
-            'accuracy' => 'Approximate stripe proportions',
+            'suspension' => 'bar',
             'stripes' => [
                 ['name' => 'Green', 'hex' => '#267447', 'ratio' => 4.5],
                 ['name' => 'Black', 'hex' => '#171717', 'ratio' => 1],
@@ -887,6 +1026,7 @@ $medals = [
         'description' => 'Awarded for qualifying full-time service in the Armed Forces and certain other eligible organisations during the Second World War.',
 
         'ribbon' => [
+            'suspension' => 'bar',
             'stripes' => [
                 ['name' => 'Red', 'hex' => '#C8102E', 'ratio' => 6.5],
                 ['name' => 'Blue', 'hex' => '#173B67', 'ratio' => 6.5],
@@ -916,6 +1056,7 @@ $medals = [
 
         'description' => 'Awarded to selected recipients in recognition of the Coronation of Queen Elizabeth II.',
         'ribbon' => [
+            'suspension' => 'ring',
             'stripes' => [
                 ['name' => 'White', 'hex' => '#F4F1E8', 'ratio' => 1],
                 ['name' => 'Dark Red', 'hex' => '#8B0000', 'ratio' => 10],
@@ -941,6 +1082,7 @@ $medals = [
 
         'description' => 'Awarded to recognise the Silver Jubilee of Queen Elizabeth II.',
         'ribbon' => [
+            'suspension' => 'ring',
             'stripes' => [
                 ['name' => 'Red', 'hex' => '#C8102E', 'ratio' => 2],
                 ['name' => 'White', 'hex' => '#F4F1E8', 'ratio' => 10],
@@ -966,6 +1108,7 @@ $medals = [
 
         'description' => 'Awarded to recognise the Golden Jubilee of Queen Elizabeth II.',
         'ribbon' => [
+            'suspension' => 'ring',
             'stripes' => [
                 ['name' => 'Red', 'hex' => '#C8102E', 'ratio' => 1],
                 ['name' => 'Blue', 'hex' => '#00205B', 'ratio' => 5],
@@ -991,6 +1134,7 @@ $medals = [
 
         'description' => 'Awarded to recognise the Diamond Jubilee of Queen Elizabeth II.',
         'ribbon' => [
+            'suspension' => 'ring',
             'stripes' => [
                 ['name' => 'Teal', 'hex' => '#008C95', 'ratio' => 2],
                 ['name' => 'Maroon', 'hex' => '#800020', 'ratio' => 10],
@@ -1016,6 +1160,7 @@ $medals = [
 
         'description' => 'Awarded to recognise the Platinum Jubilee of Queen Elizabeth II.',
         'ribbon' => [
+            'suspension' => 'ring',
             'stripes' => [
                 ['name' => 'Platinum Grey', 'hex' => '#C5C7C9', 'ratio' => 1],
                 ['name' => 'Red', 'hex' => '#C8102E', 'ratio' => 5],
@@ -1039,6 +1184,7 @@ $medals = [
 
         'description' => 'Awarded to recognise qualifying service and contributions associated with the Coronation of King Charles III and Queen Camilla.',
         'ribbon' => [
+            'suspension' => 'ring',
             'stripes' => [
                 ['name' => 'Red', 'hex' => '#C8102E', 'ratio' => 1],
                 ['name' => 'Dark Blue', 'hex' => '#00205B', 'ratio' => 5],
@@ -1065,6 +1211,7 @@ $medals = [
 
         'description' => 'Awarded for long and efficient service in the Territorial Army, with additional service recognised by clasps.',
         'ribbon' => [
+            'suspension' => 'bar',
             'stripes' => [
                 ['name' => 'Yellow', 'hex' => '#D8B93E', 'ratio' => 1],
                 ['name' => 'Green', 'hex' => '#17613F', 'ratio' => 6],
@@ -1086,6 +1233,7 @@ $medals = [
 
         'description' => 'Awarded for qualifying long and efficient service in the UK Volunteer Reserve Forces.',
         'ribbon' => [
+            'suspension' => 'bar',
             'stripes' => [
                 ['name' => 'Dark Green', 'hex' => '#17613F', 'ratio' => 9],
                 ['name' => 'Yellow',     'hex' => '#D8B93E', 'ratio' => 1],
@@ -1176,6 +1324,7 @@ $medals = [
 
         'description' => 'Awarded to eligible commissioned officers and adult instructors of the Cadet Forces for qualifying long and efficient service.',
         'ribbon' => [
+            'suspension' => 'bar',
             'stripes' => [
                 ['name' => 'Yellow',     'hex' => '#D8B93E', 'ratio' => 10],
                 ['name' => 'Dark Blue',  'hex' => '#1B2D52', 'ratio' => 6],
@@ -1253,6 +1402,27 @@ $medals = [
             ],
         ],
     ],
+    'kings_volunteer_reserves_medal' => [
+        'name' => 'King\'s Volunteer Reserves Medal',
+        'p' => 640,
+        'type' => 'service medal',
+        'category' => 'reserve service',
+        'status' => 'current',
+        'introduced' => 1999,
+        'discontinued' => null,
+        'description' => 'Awarded to members of any rank of the Volunteer Reserve Forces for devotion to duty and exemplary service of particular value and as an outstanding example to others.',
+        'ribbon' => [
+            'suspension' => 'bar',
+            'stripes' => [
+                ['name' => 'Gold',       'hex' => '#D4AF37', 'ratio' => 0.7],
+                ['name' => 'Dark Green', 'hex' => '#004225', 'ratio' => 1],
+                ['name' => 'Gold',       'hex' => '#D4AF37', 'ratio' => 0.7],
+                ['name' => 'Dark Green', 'hex' => '#004225', 'ratio' => 1],
+                ['name' => 'Gold',       'hex' => '#D4AF37', 'ratio' => 0.7],
+            ],
+        ],
+        'tags' => ['Military', 'Reserve Forces', 'Meritorious Service'],
+    ],
     // 700–799	Organisational and voluntary service awards
     'St_John_efficient_service' => [
         'name' => 'Service Medal of the Order of St John',
@@ -1267,6 +1437,7 @@ $medals = [
 
         'description' => 'Awarded for efficient service within the St John Ambulance organisation, with additional service recognised by bars.',
         'ribbon' => [
+            'suspension' => 'bar',
             'stripes' => [
                 ['name' => 'Black', 'hex' => '#000000', 'ratio' => 1],
                 ['name' => 'White', 'hex' => '#ffffff', 'ratio' => 1],
@@ -1399,6 +1570,7 @@ $medals = [
 
         'description' => 'Awarded in recognition of 50 years of service to the Order of St John, with additional service recognised by bars.',
         'ribbon' => [
+            'suspension' => 'bar',
             'stripes' => [
                 ['name' => 'Black', 'hex' => '#000000', 'ratio' => 1],
                 ['name' => 'White', 'hex' => '#ffffff', 'ratio' => 1],
