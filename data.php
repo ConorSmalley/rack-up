@@ -109,7 +109,6 @@ $medals = [
         ],
         'tags' => ['WW1'],
     ],
-
     'british_war_medal' => [
         'name' => 'British War Medal 1914–1920',
         'p' => 412,
@@ -127,7 +126,6 @@ $medals = [
         ],
         'tags' => ['WW1'],
     ],
-
     'victory_medal' => [
         'name' => 'Victory Medal 1914–1919',
         'p' => 414,
@@ -499,7 +497,6 @@ $medals = [
             ],
         ],
     ],
-
     'italy_star' => [
         'name' => 'Italy Star',
         'p' => 427,
@@ -515,7 +512,6 @@ $medals = [
         ],
         'tags' => ['WW2'],
     ],
-
     'france_germany_star' => [
         'name' => 'France and Germany Star',
         'p' => 428,
@@ -556,7 +552,6 @@ $medals = [
             ],
         ],
     ],
-
     'defence_medal' => [
         'name' => 'Defence Medal',
         'p' => 429,
@@ -577,7 +572,6 @@ $medals = [
         ],
         'tags' => ['WW2'],
     ],
-
     'war_medal_1939_45' => [
         'name' => 'War Medal 1939–1945',
         'p' => 431,
@@ -613,7 +607,6 @@ $medals = [
         ],
         'tags' => ['Royal', 'Coronation'],
     ],
-
     'queen_elizabeth_ii_silver_jubilee_1977' => [
         'name' => 'Queen Elizabeth II Silver Jubilee Medal',
         'p' => 521,
@@ -631,7 +624,6 @@ $medals = [
         ],
         'tags' => ['Royal', 'Jubilee'],
     ],
-
     'queen_elizabeth_ii_golden_jubilee_2002' => [
         'name' => 'Queen Elizabeth II Golden Jubilee Medal',
         'p' => 522,
@@ -649,7 +641,6 @@ $medals = [
         ],
         'tags' => ['Royal', 'Jubilee'],
     ],
-
     'queen_elizabeth_ii_diamond_jubilee_2012' => [
         'name' => 'Queen Elizabeth II Diamond Jubilee Medal',
         'p' => 523,
@@ -667,7 +658,6 @@ $medals = [
         ],
         'tags' => ['Royal', 'Jubilee'],
     ],
-
     'queen_elizabeth_ii_platinum_jubilee_2022' => [
         'name' => 'Queen Elizabeth II Platinum Jubilee Medal',
         'p' => 524,
@@ -683,7 +673,6 @@ $medals = [
         ],
         'tags' => ['Royal', 'Jubilee'],
     ],
-
     'king_charles_iii_coronation_2023' => [
         'name' => 'King Charles III Coronation Medal',
         'p' => 530,
@@ -715,7 +704,6 @@ $medals = [
         ],
         'tags' => ['Long-Service'],
     ],
-
     'volunteer_reserves_service_medal' => [
         'name' => 'Volunteer Reserves Service Medal',
         'p' => 601,
@@ -798,7 +786,6 @@ $medals = [
             ],
         ],
     ],
-
     'cadet_forces_medal' => [
         'name' => 'Cadet Forces Medal',
         'p' => 601,
@@ -881,7 +868,6 @@ $medals = [
             ],
         ],
     ],
-
     'St_John_efficient_service' => [
         'name' => 'Service Medal of the Order of St John',
         'p' => 611,
@@ -1006,7 +992,6 @@ $medals = [
             ],
         ],
     ],
-
     'St_John_ultra_efficient_service' => [
         'name' => 'Ultra Long Service Service Medal of the Order of St John',
         'p' => 612,
