@@ -150,14 +150,14 @@ body {
     padding: 0;
     flex: 0 0 auto;
 }
-.medal-card-header {
-    min-height: 70px;
+/* .medal-card-header { */
+    /* min-height: 70px; */
     /* display: flex; */
     /* align-items: center; */
-}
+/* } */
 
-.medal-card-header h4 {
-    margin: 0;
-    text-align: end;
-}
+/* .medal-card-header h4 { */
+    /* margin: 0; */
+    /* text-align: end; */
+/* } */
 

@@ -488,7 +488,16 @@ function renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, 
         true,
         null
     );
-    $html .= '<h4>' . e($medal['name']) . '</h4>';
+    $html .= '<input'
+        . ' type="checkbox"'
+        . ' class="check"'
+        . ' id="medal_' . e($medalId) . '"'
+        . ' name="selected[]"'
+        . ' value="' . e($medalId) . '"'
+        . ' data-medal-select'
+        . ' data-medal-id="' . e($medalId) . '"'
+        . ($selected ? ' checked' : '')
+        . '>';
     $html .= '</div>';
     $html .= '</div>';
 
@@ -497,6 +506,7 @@ function renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, 
     // =====================================================
 
     $html .= '<div class="card-body d-flex flex-column">';
+    $html .= '<h4 class="card-title">' . e($medal['name']) . '</h4>';
     $html .= '<p class="card-text"><small>' . e($medal['description']) . '</small></p>';
     $html .= '</div>';
 
@@ -644,16 +654,16 @@ function renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, 
     }
 
     // Medal selection checkbox.
-    $html .= '<input'
-        . ' type="checkbox"'
-        . ' class="check"'
-        . ' id="medal_' . e($medalId) . '"'
-        . ' name="selected[]"'
-        . ' value="' . e($medalId) . '"'
-        . ' data-medal-select'
-        . ' data-medal-id="' . e($medalId) . '"'
-        . ($selected ? ' checked' : '')
-        . '>';
+    // $html .= '<input'
+    //     . ' type="checkbox"'
+    //     . ' class="check"'
+    //     . ' id="medal_' . e($medalId) . '"'
+    //     . ' name="selected[]"'
+    //     . ' value="' . e($medalId) . '"'
+    //     . ' data-medal-select'
+    //     . ' data-medal-id="' . e($medalId) . '"'
+    //     . ($selected ? ' checked' : '')
+    //     . '>';
 
     $html .= '</div>';
     $html .= '</div>';
