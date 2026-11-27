@@ -184,7 +184,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         ?>
             <section id="medalRack" class="row medal-rack border rounded bg-white">
-                <div class="col-12"><?= renderMedalText($selectedMedals, $selectedDevices); ?></div>
+                <div class="col-12"><?= renderMedalText($selectedMedals, $selectedVariants, $selectedDevices); ?></div>
+                <div class="col-12"><?= renderNameText($selectedMedals, $selectedVariants, "Mr Conor Smalley"); ?></div>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="ribbon-rack" data-bs-toggle="tab" data-bs-target="#ribbon-rack-pane" type="button" role="tab" aria-controls="ribbon-rack-pane" aria-selected="true">Ribbon Rack</button>

@@ -4,6 +4,7 @@ $medals = [
     
     'vc' => [
         'name' => 'Victoria Cross',
+        'post-nominals' => 'VC',
         'p' => 010,
 
         'type' => 'decoration',
@@ -31,6 +32,7 @@ $medals = [
     ],
     'gc' => [
         'name' => 'George Cross',
+        'post-nominals' => 'GC',
         'p' => 020,
 
         'type' => 'decoration',
@@ -59,6 +61,7 @@ $medals = [
     // 100–199	Orders of chivalry
     'Order_St_John' => [
         'name' => 'Order of St John',
+        'post-nominals' => null,
         'p' => 100,
 
         'type' => 'order insignia',
@@ -82,11 +85,21 @@ $medals = [
             ],
         ],
         'medal-shape' => 'amalfi-cross',
-
         'tags' => ['St-John'],
+        'variants' => [
+            'member' => [
+                'name' => 'Member',
+                'post-nominals' => 'MStJ',
+            ],
+            'officer' => [
+                'name' => 'Officer',
+                'post-nominals' => 'OStJ',
+            ],
+        ],
     ],
     'distinguished_service_order' => [
         'name' => 'Distinguished Service Order',
+        'post-nominals' => 'DSO',
         'p' => 110,
         'type' => 'order',
         'category' => 'distinguished service',
@@ -108,6 +121,7 @@ $medals = [
     // 200–299	Decorations
     'conspicuous_gallantry_cross' => [
         'name' => 'Conspicuous Gallantry Cross',
+        'post-nominals' => 'CGC',
         'p' => 210,
 
         'type' => 'decoration',
@@ -135,6 +149,7 @@ $medals = [
     ],
     'military_cross' => [
         'name' => 'Military Cross',
+        'post-nominals' => 'MC',
         'p' => 220,
 
         'type' => 'decoration',
@@ -159,6 +174,7 @@ $medals = [
     ],
     'distinguished_service_cross' => [
         'name' => 'Distinguished Service Cross',
+        'post-nominals' => 'DSC',
         'p' => 230,
         'type' => 'decoration',
         'category' => 'gallantry',
@@ -179,6 +195,7 @@ $medals = [
     ],
     'distinguished_flying_cross' => [
         'name' => 'Distinguished Flying Cross',
+        'post-nominals' => 'DFC',
         'p' => 240,
         'type' => 'decoration',
         'category' => 'gallantry',
@@ -206,6 +223,7 @@ $medals = [
     ],
     'air_force_cross' => [
         'name' => 'Air Force Cross',
+        'post-nominals' => 'AFC',
         'p' => 250,
         'type' => 'decoration',
         'category' => 'gallantry',
@@ -232,6 +250,7 @@ $medals = [
     ],
     'royal_red_cross_first_class' => [
         'name' => 'Royal Red Cross (First Class)',
+        'post-nominals' => 'RRC',
         'p' => 260,
         'type' => 'decoration',
         'category' => 'meritorious service',
@@ -253,6 +272,7 @@ $medals = [
     ],
     'royal_red_cross_associate' => [
         'name' => 'Royal Red Cross (Associate)',
+        'post-nominals' => 'ARRC',
         'p' => 270,
         'type' => 'decoration',
         'category' => 'meritorious service',
@@ -274,6 +294,7 @@ $medals = [
     ],
     'royal_victorian_medal' => [
         'name' => 'Royal Victorian Medal',
+        'post-nominals' => 'RVM',
         'p' => 280,
         'type' => 'service medal',
         'category' => 'royal service',
@@ -298,6 +319,7 @@ $medals = [
     ],
     'british_empire_medal' => [
         'name' => 'British Empire Medal',
+        'post-nominals' => 'BEM',
         'p' => 290,
 
         'type' => 'decoration',
@@ -343,6 +365,7 @@ $medals = [
     // 300–399	Gallantry and distinguished conduct medals
     'george_medal' => [
         'name' => 'George Medal',
+        'post-nominals' => 'GM',
         'p' => 300,
         'type' => 'gallantry medal',
         'category' => 'gallantry',
@@ -369,6 +392,7 @@ $medals = [
     ],
     'military_medal' => [
         'name' => 'Military Medal',
+        'post-nominals' => 'MM',
         'p' => 310,
 
         'type' => 'gallantry medal',
@@ -396,6 +420,7 @@ $medals = [
     ],
     'kings_gallantry_medal' => [
         'name' => 'King\'s Gallantry Medal',
+        'post-nominals' => 'KGM',
         'p' => 320,
         'type' => 'gallantry medal',
         'category' => 'gallantry',
@@ -419,6 +444,7 @@ $medals = [
     // 400–409	Pre-1914 campaign medals
     'india_general_service_1909' => [
         'name' => '1909 India General Service Medal',
+        'post-nominals' => null,
         'p' => 400,
 
         'type' => 'campaign medal',
@@ -480,6 +506,7 @@ $medals = [
     // 410–419	First World War
     '1914_15_star' => [
         'name' => '1914–15 Star',
+        'post-nominals' => null,
         'p' => 410,
 
         'type' => 'campaign medal',
@@ -504,6 +531,7 @@ $medals = [
     ],
     'british_war_medal' => [
         'name' => 'British War Medal 1914–1920',
+        'post-nominals' => null,
         'p' => 415,
 
         'type' => 'campaign medal',
@@ -532,6 +560,7 @@ $medals = [
     ],
     'victory_medal' => [
         'name' => 'Victory Medal 1914–1919',
+        'post-nominals' => null,
         'p' => 418,
 
         'type' => 'campaign medal',
@@ -602,6 +631,7 @@ $medals = [
     // 420–439	Second World War
     '1939_45_star' => [
         'name' => '1939–45 Star',
+        'post-nominals' => null,
         'p' => 420,
 
         'type' => 'campaign medal',
@@ -657,6 +687,7 @@ $medals = [
     ],
     'atlantic_star' => [
         'name' => 'Atlantic Star',
+        'post-nominals' => null,
         'p' => 422,
 
         'type' => 'campaign medal',
@@ -719,6 +750,7 @@ $medals = [
     ],
     'arctic_star' => [
         'name' => 'Arctic Star',
+        'post-nominals' => null,
         'p' => 424,
 
         'type' => 'campaign medal',
@@ -748,6 +780,7 @@ $medals = [
     ],
     'air_crew_europe_star' => [
         'name' => 'Air Crew Europe Star',
+        'post-nominals' => null,
         'p' => 426,
 
         'type' => 'campaign medal',
@@ -808,6 +841,7 @@ $medals = [
     ],
     'africa_star' => [
         'name' => 'Africa Star',
+        'post-nominals' => null,
         'p' => 428,
 
         'type' => 'campaign medal',
@@ -883,6 +917,7 @@ $medals = [
     ],
     'pacific_star' => [
         'name' => 'Pacific Star',
+        'post-nominals' => null,
         'p' => 430,
 
         'type' => 'campaign medal',
@@ -930,6 +965,7 @@ $medals = [
     ],
     'burma_star' => [
         'name' => 'Burma Star',
+        'post-nominals' => null,
         'p' => 4432,
 
         'type' => 'campaign medal',
@@ -976,6 +1012,7 @@ $medals = [
     ],
     'italy_star' => [
         'name' => 'Italy Star',
+        'post-nominals' => null,
         'p' => 434,
 
         'type' => 'campaign medal',
@@ -1001,6 +1038,7 @@ $medals = [
     ],
     'france_germany_star' => [
         'name' => 'France and Germany Star',
+        'post-nominals' => null,
         'p' => 436,
 
         'type' => 'campaign medal',
@@ -1046,6 +1084,7 @@ $medals = [
     ],
     'defence_medal' => [
         'name' => 'Defence Medal',
+        'post-nominals' => null,
         'p' => 438,
 
         'type' => 'campaign medal',
@@ -1074,6 +1113,7 @@ $medals = [
     ],
     'war_medal_1939_45' => [
         'name' => 'War Medal 1939–1945',
+        'post-nominals' => null,
         'p' => 439,
 
         'type' => 'campaign medal',
@@ -1103,6 +1143,7 @@ $medals = [
     // 440–459	Post-war campaign medals
     'general_service_medal_2008' => [
         'name' => 'General Service Medal 2008',
+        'post-nominals' => null,
         'p' => 440,
         'type' => 'campaign medal',
         'category' => 'campaign',
@@ -1125,6 +1166,7 @@ $medals = [
     ],
     'iraq_medal' => [
         'name' => 'Iraq Medal',
+        'post-nominals' => null,
         'p' => 442,
         'type' => 'campaign medal',
         'category' => 'campaign',
@@ -1147,6 +1189,7 @@ $medals = [
     ],
     'operational_service_medal_sierra_leone' => [
         'name' => 'Operational Service Medal – Sierra Leone',
+        'post-nominals' => null,
         'p' => 450,
         'type' => 'campaign medal',
         'category' => 'campaign',
@@ -1172,6 +1215,7 @@ $medals = [
     ],
     'operational_service_medal_afghanistan' => [
         'name' => 'Operational Service Medal – Afghanistan',
+        'post-nominals' => null,
         'p' => 451,
         'type' => 'campaign medal',
         'category' => 'campaign',
@@ -1197,6 +1241,7 @@ $medals = [
     ],
     'operational_service_medal_droc' => [
         'name' => 'Operational Service Medal – Democratic Republic of Congo',
+        'post-nominals' => null,
         'p' => 452,
         'type' => 'campaign medal',
         'category' => 'campaign',
@@ -1222,6 +1267,7 @@ $medals = [
     ],
     'operational_service_medal_iraq_syria' => [
         'name' => 'Operational Service Medal – Iraq and Syria',
+        'post-nominals' => null,
         'p' => 453,
         'type' => 'campaign medal',
         'category' => 'campaign',
@@ -1248,6 +1294,7 @@ $medals = [
     // 460–479	Modern operational service medals
     'accumulated_campaign_service_medal_2011' => [
         'name' => 'Accumulated Campaign Service Medal 2011',
+        'post-nominals' => null,
         'p' => 460,
         'type' => 'service medal',
         'category' => 'long service',
@@ -1270,6 +1317,7 @@ $medals = [
     ],
     'wider_service_medal' => [
         'name' => 'Wider Service Medal',
+        'post-nominals' => null,
         'p' => 470,
         'type' => 'service medal',
         'category' => 'operational service',
@@ -1295,9 +1343,9 @@ $medals = [
         'medal-shape' => 'circular',
         'tags' => ['Operational Service', 'Military', 'Civilian Service'],
     ],
-
     'humanitarian_medal' => [
         'name' => 'Humanitarian Medal',
+        'post-nominals' => null,
         'p' => 480,
         'type' => 'service medal',
         'category' => 'humanitarian service',
@@ -1362,6 +1410,7 @@ $medals = [
     ],
     'nuclear_test_medal' => [
         'name' => 'Nuclear Test Medal',
+        'post-nominals' => null,
         'p' => 490,
         'type' => 'commemorative service medal',
         'category' => 'nuclear test service',
@@ -1391,6 +1440,7 @@ $medals = [
     // 500–599	Coronation and Jubilee medals
     'queen_elizabeth_ii_coronation_1953' => [
         'name' => 'Queen Elizabeth II Coronation Medal',
+        'post-nominals' => null,
         'p' => 500,
 
         'type' => 'commemorative medal',
@@ -1418,6 +1468,7 @@ $medals = [
     ],
     'queen_elizabeth_ii_silver_jubilee_1977' => [
         'name' => 'Queen Elizabeth II Silver Jubilee Medal',
+        'post-nominals' => null,
         'p' => 510,
 
         'type' => 'commemorative medal',
@@ -1445,6 +1496,7 @@ $medals = [
     ],
     'queen_elizabeth_ii_golden_jubilee_2002' => [
         'name' => 'Queen Elizabeth II Golden Jubilee Medal',
+        'post-nominals' => null,
         'p' => 520,
 
         'type' => 'commemorative medal',
@@ -1472,6 +1524,7 @@ $medals = [
     ],
     'queen_elizabeth_ii_diamond_jubilee_2012' => [
         'name' => 'Queen Elizabeth II Diamond Jubilee Medal',
+        'post-nominals' => null,
         'p' => 530,
 
         'type' => 'commemorative medal',
@@ -1499,6 +1552,7 @@ $medals = [
     ],
     'queen_elizabeth_ii_platinum_jubilee_2022' => [
         'name' => 'Queen Elizabeth II Platinum Jubilee Medal',
+        'post-nominals' => null,
         'p' => 540,
 
         'type' => 'commemorative medal',
@@ -1524,6 +1578,7 @@ $medals = [
     ],
     'king_charles_iii_coronation_2023' => [
         'name' => 'King Charles III Coronation Medal',
+        'post-nominals' => null,
         'p' => 550,
 
         'type' => 'commemorative medal',
@@ -1552,6 +1607,7 @@ $medals = [
     // 600–699	Efficiency and long service
     'efficiency_medal_territorial' => [
         'name' => 'Efficiency Medal (Territorial)',
+        'post-nominals' => null,
         'p' => 600,
 
         'type' => 'long service medal',
@@ -1575,6 +1631,7 @@ $medals = [
     ],
     'volunteer_reserves_service_medal' => [
         'name' => 'Volunteer Reserves Service Medal',
+        'post-nominals' => 'VR',
         'p' => 610,
 
         'type' => 'long service medal',
@@ -1685,6 +1742,7 @@ $medals = [
     ],
     'cadet_forces_medal' => [
         'name' => 'Cadet Forces Medal',
+        'post-nominals' => null,
         'p' => 620,
 
         'type' => 'long service medal',
@@ -1777,6 +1835,7 @@ $medals = [
     ],
     'meritorious_service_medal' => [
         'name' => 'Meritorious Service Medal',
+        'post-nominals' => null,
         'p' => 630,
         'type' => 'long service medal',
         'category' => 'long service',
@@ -1799,6 +1858,7 @@ $medals = [
     ],
     'kings_volunteer_reserves_medal' => [
         'name' => 'King\'s Volunteer Reserves Medal',
+        'post-nominals' => 'KVRM',
         'p' => 640,
         'type' => 'service medal',
         'category' => 'reserve service',
@@ -1821,6 +1881,7 @@ $medals = [
     ],
     'army_long_service_good_conduct_medal' => [
         'name' => 'Army Long Service and Good Conduct Medal',
+        'post-nominals' => null,
         'p' => 650,
         'type' => 'long service medal',
         'category' => 'long service',
@@ -1842,6 +1903,7 @@ $medals = [
     ],
     'royal_navy_long_service_good_conduct_medal' => [
         'name' => 'Royal Navy Long Service and Good Conduct Medal',
+        'post-nominals' => null,
         'p' => 660,
         'type' => 'long service medal',
         'category' => 'long service',
@@ -1863,6 +1925,7 @@ $medals = [
     ],
     'raf_long_service_good_conduct_medal' => [
         'name' => 'Royal Air Force Long Service and Good Conduct Medal',
+        'post-nominals' => null,
         'p' => 670,
         'type' => 'long service medal',
         'category' => 'long service',
@@ -1886,6 +1949,7 @@ $medals = [
     // 700–799	Organisational and voluntary service awards
     'St_John_efficient_service' => [
         'name' => 'Service Medal of the Order of St John',
+        'post-nominals' => null,
         'p' => 700,
 
         'type' => 'organisational service medal',
@@ -2020,6 +2084,7 @@ $medals = [
     ],
     'St_John_ultra_efficient_service' => [
         'name' => 'Ultra Long Service Service Medal of the Order of St John',
+        'post-nominals' => null,
         'p' => 710,
 
         'type' => 'organisational service medal',
@@ -2114,6 +2179,7 @@ $medals = [
     ],
     'kings_medal_champion_shots' => [
         'name' => 'King’s Medal for Champion Shots',
+        'post-nominals' => null,
         'p' => 720,
         'type' => 'marksmanship medal',
         'category' => 'marksmanship',

@@ -878,7 +878,7 @@ function renderRack($medals, $devices, $variants, $RIBBON_WIDTH, $RIBBON_HEIGHT,
             : '';
 
         $html .= '<div class="col-auto"' . $overlapStyle . '>';
-        if(isset($medal['variants'])){
+        if(isset($medal['variants']) && !isset($medal['ribbon'])){
             if(isset($variants[$medalId])){
                 $html .= renderRibbon($variants[$medalId][0]['ribbon'], $RIBBON_WIDTH * $SCALE, $RIBBON_HEIGHT * $SCALE, $RIBBONS_ONLY, $devices[$medalId] ?? null, $medal['medal-shape']);
             } else {
@@ -909,10 +909,21 @@ function renderRibbonRack($medals, $devices, $variants, $RIBBON_WIDTH, $RIBBON_H
 function renderMedalRack($medals, $devices, $variants, $RIBBON_WIDTH, $RIBBON_HEIGHT_FULL, $SCALE){
     return renderRack($medals, $devices, $variants, $RIBBON_WIDTH, $RIBBON_HEIGHT_FULL, $SCALE, false);
 }
+function renderNameText($medals, $variants, $name) {
 
-function renderMedalText($medals, $selectedDevices){
+    $postNominals = array_filter(
+        array_map(function ($medalId) use ($medals, $variants) {
+            // var_dump($variants[$medalId][0]['post-nominals'] ?? NULL);
+            return $medals[$medalId]['post-nominals'] ?? ($variants[$medalId][0]['post-nominals'] ?? NULL);
+        }, array_keys($medals))
+    );
 
-    return implode(', ', array_map(function ($medalId) use ($medals, $selectedDevices) {
+    return $name . ' ' . implode(', ', array_map('e', $postNominals));
+}
+
+function renderMedalText($medals, $selectedVariants, $selectedDevices){
+
+    return implode(', ', array_map(function ($medalId) use ($medals, $selectedVariants, $selectedDevices) {
 
         $name = $medals[$medalId]['name'];
         
@@ -924,6 +935,22 @@ function renderMedalText($medals, $selectedDevices){
             }, array_keys($medalDevices)));
             
             if(isset($selectedDevices[$medalId][0]['type']) && $selectedDevices[$medalId][0]['type'] === 'none'){
+                
+            } else {
+                // $name .= ' (' . $selectedDevices[$medalId][0]['name'] . ')';
+                $name .= ' (' . $devs . ')';
+            }
+
+            
+        }
+        if (isset($selectedVariants[$medalId])) {
+            $medalVariants = $selectedVariants[$medalId];
+
+            $devs = implode(', ', array_map(function ($deviceId) use ($medalVariants) {
+                return($medalVariants[$deviceId]['name']);
+            }, array_keys($medalVariants)));
+            
+            if(isset($selectedVariants[$medalId][0]['type']) && $selectedVariants[$medalId][0]['type'] === 'none'){
                 
             } else {
                 // $name .= ' (' . $selectedDevices[$medalId][0]['name'] . ')';
@@ -961,7 +988,7 @@ function renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, 
 
     $html .= '<div class="card-header medal-card-header">';
     $html .= '<div class="d-flex justify-content-between align-items-start">';
-    if(isset($medal['variants']) && is_array($medal['variants'])){
+    if(!isset($medal['ribbon']) && isset($medal['variants']) && is_array($medal['variants'])){
         foreach($medal['variants'] as $variant){
             $html .= renderRibbon(
                 $variant['ribbon'],
@@ -1033,13 +1060,14 @@ function renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, 
                     // Determine whether this variant is selected.
                     $isSelected = false;
 
-                    if (isset($selectedDevices[$medalId])) {
+                    if (isset($selectedVariants[$medalId])) {
 
                         $selectedValues = (array) $selectedVariants[$medalId];
 
                         // Support both device IDs and the existing device arrays.
                         $isSelected = in_array($variantId, $selectedValues, true)
                             || in_array($variant, $selectedValues, true);
+
 
                     }
 
