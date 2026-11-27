@@ -8,6 +8,7 @@ $RIBBON_WIDTH = 32;
 $RIBBON_HEIGHT_FULL = 50;
 $RIBBON_HEIGHT_SHORT = 10;
 $SHOW_ALL_MEDAL_RACK = false;
+$SHOW_TAGS = false;
 
 $FULL_MEDAL_ADITIONAL_SCALE = 0.5;
 
@@ -228,7 +229,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="row row-cols-1 xl:row-cols-6 lg:row-cols-4 md:row-cols-3 sm:row-cols-2 g-4">
 
                     <?php foreach ($medals as $medalId => $medal) { ?>
-                        <?= renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE, in_array($medal, $selectedMedals, true), $selectedDevices, $selectedVariants, false); ?>
+                        <?= renderMedalCard($medal, $medalId, $RIBBON_WIDTH, $RIBBON_HEIGHT_SHORT, $SCALE, in_array($medal, $selectedMedals, true), $selectedDevices, $selectedVariants, $SHOW_TAGS); ?>
                     <?php } ?>
 
                 </div>
@@ -237,39 +238,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         </main>
+        <?php if($SHOW_TAGS){ ?>
 
-        <!-- Footer Tag List -->
-        <section class="tag-container border rounded bg-white">
+            <!-- Footer Tag List -->
+            <section class="tag-container border rounded bg-white">
 
-            <button
-                type="button"
-                class="badge badge-outline theme-primary tag-filter active"
-                data-tag="all"
-            >
-                All Medals
-            </button>
+                <button
+                    type="button"
+                    class="badge badge-outline theme-primary tag-filter active"
+                    data-tag="all"
+                >
+                    All Medals
+                </button>
 
-            <?php if ($tags !== []) { ?>
+                <?php if ($tags !== []) { ?>
 
-                <?php foreach ($tags as $tag) { ?>
+                    <?php foreach ($tags as $tag) { ?>
 
-                    <button
-                        type="button"
-                        class="badge badge-outline theme-primary tag-filter"
-                        data-tag="<?= e($tag) ?>"
-                    >
-                        <?= e($tag) ?>
-                    </button>
+                        <button
+                            type="button"
+                            class="badge badge-outline theme-primary tag-filter"
+                            data-tag="<?= e($tag) ?>"
+                        >
+                            <?= e($tag) ?>
+                        </button>
+
+                    <?php } ?>
+
+                <?php } else { ?>
+
+                    No tags set up.
 
                 <?php } ?>
 
-            <?php } else { ?>
-
-                No tags set up.
-
-            <?php } ?>
-
-        </section>
+            </section>
+        <?php } ?>
     </div>
     <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-+PW0IDVGGwmpaBQvcXY+W0BcpHpITFB3dSfSoGvDdHtLbrLpSbpGcvtQRM/BJpz+" crossorigin="anonymous"></script>
     <script>
