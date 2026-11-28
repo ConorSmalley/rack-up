@@ -28,7 +28,7 @@ $medals = [
             ],
         ],
         'medal-shape' => 'cross',
-         'tags' => ['Gallantry', 'Highest-Awards'],
+        'tags' => ['Gallantry', 'Highest-Awards'],
     ],
     'gc' => [
         'name' => 'George Cross',
